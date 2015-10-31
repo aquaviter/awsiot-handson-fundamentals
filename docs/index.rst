@@ -1,20 +1,39 @@
 =============================
-1. イントロダクション
+AWS IoT ハンズオン ~基本編~
 =============================
 
 本書はAWS IoTおよびAWSの各サービスを利用してIoTの基本的なシステムを構築するためのハンズオン手順 について記述しております。
 
-1.1 ハンズオンシナリオ
+事前準備
+========
+以下のURLから必要なドライバをダウンロードし、インストールをお願いします。
+
+Windowsの場合
+-------------
+
+* `Intel Edisonドライバのインストール <https://s3-ap-northeast-1.amazonaws.com/toshiake-iot-handson/classmethod-devday/tools/win/IntelEdisonDriverSetup1.2.1.exe>`_
+
+* `Windows FTDI ドライバのインストール <http://www.ftdichip.com/Drivers/CDM/CDM%20v2.10.00%20WHQL%20Certified.exe>`_
+
+
+MacOSの場合
+-----------
+
+* `MacOS FTDI ドライバのインストール <https://s3-ap-northeast-1.amazonaws.com/toshiake-iot-handson/classmethod-devday/tools/mac/FTDIUSBSerialDriver_v2_2_18.dmg>`_
+
+サンプルプログラム
 ==================
 
-センサーデータを送信してみよう
-------------------------------
-Intel Edisonに接続された照度センサーのデータをAWSの各サービスにストアします。
-EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきS3バケットへのアーカイブ、DynamoDBへのPutを行います。
+よくあるトラブル
+================
 
-.. image:: images/vol1.png
+AWS IoTのupdate shadow CLIを実行時にSSLエラーとなる
+---------------------------------------------------
+python 2.7.10にアップデート、AWS CLIの再インストールでOK。
+  
 
 
-IoTボタンを作ってみよう
------------------------
-Intel Edisonに接続されたボタンを押すと、Amazon SNSを通じて指定したメールアドレスにメールを送信します。
+参考情報
+========
+* `インテル Edisonの初期化とファームアップデート(Win) <http://edison-lab.jp/flash/windows/>`_
+* `インテル Edisonの初期化とファームアップデート(MacOS) <http://edison-lab.jp/flash/mac/>`_
