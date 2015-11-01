@@ -1,0 +1,102 @@
+=================
+ IoTボタンの作成
+=================
+
+Groveのボタンを利用してIoTボタンを作成します。ボタンを押すとAmazon SNSを通じて指定したメールアドレスにメールを送信するようにアクションを設定します。
+
+ルールの作成
+==============
+
+edison/buttonトピックに到着したすべてのメッセージに対してアクションを設定します。
+
+"Create a resource"をクリックし、"Create a rule"をクリックします。"Create a rule"の画面で以下の設定値を入力します。
+
+============= ============================
+項目          設定値
+============= ============================
+Name          SendEmail
+Attribute     *(アスタリスク)
+Topic Filter  edison/button
+Condition     入力しない
+============= ============================
+
+|
+
+.. image:: images/5-create-rule.png
+
+|   
+
+"Choose an action"のリストから"Send message as a push notification (SNS)"を選択します。次に、SNSのトピックを作成するために[Create a new resource]をクリックします。別の画面にAmazon SNSの設定画面が表示されます。
+
+.. image:: images/5-create-rule-2.png
+
+|           
+
+[Create new Topic]をクリックします。
+
+.. image:: images/5-create-sns-topic-1.png
+
+|
+
+"Topic Name"と"Display Name"にそれぞれ"iotbutton"と入力し、[Create topic]をクリックします。
+
+.. image:: images/5-create-sns-topic-2.png
+
+|
+   
+トピックの一覧から今回作成したiotbuttonのトピックを選択します。
+
+.. image:: images/5-create-sns-topic-3.png
+
+|   
+           
+[Create Subscription]をクリックします。
+
+.. image:: images/5-create-sns-topic-4.png
+
+|           
+
+"Protocol"のリストから"Email"を選択、"Endpoint"にすぐに受信が確認できるメールアドレスを入力し、[Create Subscription]をクリックしてください。
+
+.. image:: images/5-create-sns-topic-4.png
+
+|           
+
+先ほど入力したメールアドレスに確認メールが送信されます。"AWS Notification - Subscription Confirmation"というタイトルのメールを開き、本文中の"Confirm subscription"をクリックします。クリック後、"Subscription confirmed!"の画面が表示されます。
+
+|
+
+AWS IoTのルール作成画面に戻り、"SNS Target"からiotbuttonトピックを選択します。次に、[Create a new role]をクリックします。
+           
+.. image:: images/5-create-rule-3.png
+
+|           
+
+IAMの設定画面が開きますので、[Allow]をクリックしてください。           
+           
+.. image:: images/5-create-rule-4.png
+
+|           
+
+AWS IoTのルール作成画面に戻り、[Add Action]をクリックします。
+
+.. image:: images/5-create-rule-5.png
+
+|           
+
+SNS Actionが追加されたことを確認し、[Create]をクリックします。
+
+.. image:: images/5-create-rule-6.png
+
+|           
+
+リソースの一覧に作成したルールが表示されることを確認します。
+
+.. image:: images/5-create-rule-7.png
+
+|           
+
+プログラムの実行
+================
+
+

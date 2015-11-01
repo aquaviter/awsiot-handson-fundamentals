@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>AWS IoT ハンズオン ~基本編~ &mdash; awsiot-handson-fundamentals 0.0 documentation</title>
+    <title>AWS IoT ハンズオン ~基本編~ &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,16 +23,21 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="awsiot-handson-fundamentals 0.0 documentation" href="#" /> 
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="#" />
+    <link rel="next" title="1. イントロダクション" href="01.html" /> 
   </head>
   <body>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li><a href="#">awsiot-handson-fundamentals 0.0 documentation</a> &raquo;</li> 
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="01.html" title="1. イントロダクション"
+             accesskey="N">次へ</a> |</li>
+        <li><a href="#">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -42,10 +47,20 @@
           <div class="body">
             
   <div class="section" id="aws-iot">
-<h1>AWS IoT ハンズオン ~基本編~<a class="headerlink" href="#aws-iot" title="Permalink to this headline">¶</a></h1>
+<h1>AWS IoT ハンズオン ~基本編~<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
 <p>本書はAWS IoTおよびAWSの各サービスを利用してIoTの基本的なシステムを構築するためのハンズオン手順 について記述しております。</p>
 <div class="section" id="id1">
-<h2>事前準備<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>前提条件<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>インテルEdisonまたはRaspberry Piなどの機器で開発経験がある方</li>
+<li>IoTを活用したアプリケーション構築をご検討されているデベロッパーの方</li>
+<li>AWSクラウドを活用したシステム・アプリケーション開発に従事されている方</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>事前準備<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以下のURLから必要なドライバをダウンロードし、インストールをお願いします。</p>
 <p><strong>Windowsの場合</strong></p>
 <ul class="simple">
@@ -57,20 +72,24 @@
 <li><a class="reference external" href="https://s3-ap-northeast-1.amazonaws.com/toshiake-iot-handson/classmethod-devday/tools/mac/FTDIUSBSerialDriver_v2_2_18.dmg">MacOS FTDI ドライバのインストール</a></li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h2>サンプルプログラム<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-</div>
 <div class="section" id="id3">
-<h2>よくあるトラブル<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>サンプルプログラム<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id4">
+<h2>よくあるトラブル<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><strong>AWS IoTのupdate shadow CLIを実行時にSSLエラーとなる</strong></p>
 <p>python 2.7.10にアップデート、AWS CLIの再インストールでOK。</p>
 </div>
-<div class="section" id="id4">
-<h2>参考情報<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>参考情報<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="http://edison-lab.jp/flash/windows/">インテル Edisonの初期化とファームアップデート(Win)</a></li>
 <li><a class="reference external" href="http://edison-lab.jp/flash/mac/">インテル Edisonの初期化とファームアップデート(MacOS)</a></li>
 </ul>
+</div>
+<div class="section" id="id6">
+<h2>ハッシュタグ<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Twitterのハッシュタグはこちらになります。 <strong>#AWS_IoT_JP</strong></p>
 </div>
 </div>
 
@@ -80,32 +99,37 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
+  <h3><a href="#">目次</a></h3>
   <ul>
 <li><a class="reference internal" href="#">AWS IoT ハンズオン ~基本編~</a><ul>
-<li><a class="reference internal" href="#id1">事前準備</a></li>
-<li><a class="reference internal" href="#id2">サンプルプログラム</a></li>
-<li><a class="reference internal" href="#id3">よくあるトラブル</a></li>
-<li><a class="reference internal" href="#id4">参考情報</a></li>
+<li><a class="reference internal" href="#id1">前提条件</a></li>
+<li><a class="reference internal" href="#id2">事前準備</a></li>
+<li><a class="reference internal" href="#id3">サンプルプログラム</a></li>
+<li><a class="reference internal" href="#id4">よくあるトラブル</a></li>
+<li><a class="reference internal" href="#id5">参考情報</a></li>
+<li><a class="reference internal" href="#id6">ハッシュタグ</a></li>
 </ul>
 </li>
 </ul>
 
-  <h3>This Page</h3>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="01.html"
+                        title="次の章へ">1. イントロダクション</a></p>
+  <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
-           rel="nofollow">Show Source</a></li>
+           rel="nofollow">ソースコードを表示</a></li>
   </ul>
 <div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
+  <h3>クイック検索</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <input type="submit" value="検索" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
     <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    モジュール、クラス、または関数名を入力してください
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
@@ -114,17 +138,20 @@
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li><a href="#">awsiot-handson-fundamentals 0.0 documentation</a> &raquo;</li> 
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="01.html" title="1. イントロダクション"
+             >次へ</a> |</li>
+        <li><a href="#">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2015, aquaviter.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
     </div>
   </body>
 </html>

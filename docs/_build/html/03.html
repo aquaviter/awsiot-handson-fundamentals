@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. AWS IoT基本設定 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
+    <link rel="prev" title="2. インテルEdisonの設定" href="02.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="02.html" title="2. インテルEdisonの設定"
+             accesskey="P">前へ</a> |</li>
+        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="aws-iot">
+<h1>3. AWS IoT基本設定<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>3.1. デバイスの作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>AWSマネージメントコンソールへログインし、画面右上のメニューから東京リージョンを選択します。
+サービス一覧から&#8221;AWS IoT&#8221;をクリックします。</p>
+<img alt="_images/3-servicemenu.png" src="_images/3-servicemenu.png" />
+<p>“Get Startedが表示される場合はそちらをクリックします。</p>
+<img alt="_images/3-getstart.png" src="_images/3-getstart.png" />
+<p>デバイス(Thing)を作成します。メニューの”Create a thing”をクリックします。Nameに”edison”と入力し、[Create]をクリックします。</p>
+<img alt="_images/3-create-thing.png" src="_images/3-create-thing.png" />
+<p>リソースの一覧で作成したデバイスが表示されます。</p>
+<img alt="_images/3-thing.png" src="_images/3-thing.png" />
+</div>
+<div class="section" id="certificate">
+<h2>3.2. 証明書(Certificate)の作成<a class="headerlink" href="#certificate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>メニューの”Create a certificate”をクリックし、[1-Click Certificate Create]をクリックします。</p>
+<img alt="_images/3-create-cert.png" src="_images/3-create-cert.png" />
+<p>Download ~をクリックして、Public Key、Private Key、Certificateをそれぞれダウンロードします。</p>
+<img alt="_images/3-download-cert.png" src="_images/3-download-cert.png" />
+<p>画面下の作成した証明書をクリックし、画面右のActionsリストから[Activate]を選びます。</p>
+<img alt="_images/3-activate-cert.png" src="_images/3-activate-cert.png" />
+<p>”ACTIVE”になったことを確認します 。</p>
+<img alt="_images/3-activated-cert.png" src="_images/3-activated-cert.png" />
+</div>
+<div class="section" id="id2">
+<h2>3.3. ポリシーの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>デバイスに対して、AWS IoTの各種操作を許可するためのポリシーを作成します。メニューの”Create a policy”をクリックします。フォームにそれぞれ以下のパラメータを入力し、[Create]をクリックします。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">項目</th>
+<th class="head">値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Name</td>
+<td>awsiot-handson-policy</td>
+</tr>
+<tr class="row-odd"><td>Action</td>
+<td>iot:*</td>
+</tr>
+<tr class="row-even"><td>Resource</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/3-create-policy.png" src="_images/3-create-policy.png" />
+<p>作成したポリシーがリソースの一覧に表示されます。</p>
+<img alt="_images/3-policy.png" src="_images/3-policy.png" />
+<p>先ほど作成した証明書をポリシーに割当てます。リスト中の証明書をクリックし、[Actions]-[Attach a policy]をクリックしてください。</p>
+<img alt="_images/3-attach-policy.png" src="_images/3-attach-policy.png" />
+<p>“Confirm”の画面で、フォームにポリシー名”awsiot-handson-policy”を入力し、[Attach]をクリックします。</p>
+<img alt="_images/3-attach-policy-2.png" src="_images/3-attach-policy-2.png" />
+<p>次に、デバイスと証明書の関連付けを行います。作成した証明書をリソース一覧の中から選択し、[Actions]-[Attach a thingクリックします。</p>
+<img alt="_images/3-attach-thing.png" src="_images/3-attach-thing.png" />
+<p>&#8220;Thing Name&#8221;にデバイス名: edisonを入力し、[Attach]をクリックします。</p>
+<img alt="_images/3-attach-thing-2.png" src="_images/3-attach-thing-2.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">3. AWS IoT基本設定</a><ul>
+<li><a class="reference internal" href="#id1">3.1. デバイスの作成</a></li>
+<li><a class="reference internal" href="#certificate">3.2. 証明書(Certificate)の作成</a></li>
+<li><a class="reference internal" href="#id2">3.3. ポリシーの作成</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="02.html"
+                        title="前の章へ">2. インテルEdisonの設定</a></p>
+  <h3>このページ</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/03.txt"
+           rel="nofollow">ソースコードを表示</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>クイック検索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="02.html" title="2. インテルEdisonの設定"
+             >前へ</a> |</li>
+        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, aquaviter.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
+    </div>
+  </body>
+</html>

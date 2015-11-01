@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. インテルEdisonの設定 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
+    <link rel="prev" title="1. イントロダクション" href="01.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="01.html" title="1. イントロダクション"
+             accesskey="P">前へ</a> |</li>
+        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="edison">
+<h1>2. インテルEdisonの設定<a class="headerlink" href="#edison" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>インテルEdisonの準備を行います。</p>
+<div class="section" id="id1">
+<h2>2.1. センサーの接続<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Grove Kitの中から照度センサーとボタン、LCDを取出し、以下のように接続します。また、USBケーブルを使ってご自分のPCとEdisonへ接続します。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ポート</th>
+<th class="head">設定</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A0</td>
+<td>照度センサー</td>
+</tr>
+<tr class="row-odd"><td>D8</td>
+<td>ボタン</td>
+</tr>
+<tr class="row-even"><td>I2C</td>
+<td>LCDモニタ</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h2>2.2. シリアルポート接続<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Edisonへ接続します。まず、Edisonにシリアルポート経由で接続します。USBケーブルでPCとEdisonを接続し、シリアルコンソールを開きます。</p>
+<p><strong>Windowsの場合</strong></p>
+<p>USBケーブルとACアダプタを図のように接続してください。</p>
+<img alt="_images/usb-win.png" src="_images/usb-win.png" />
+<p><strong>MacOSの場合</strong></p>
+<p>USBケーブル2本を図のように接続してください。</p>
+<img alt="_images/usb-mac.png" src="_images/usb-mac.png" />
+<p>ターミナルソフトでEdisonに接続してください。接続に必要な情報はこちらです。<strong>特にBaud Rateにご注意ください!</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">設定</th>
+<th class="head">設定項目</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Port</td>
+<td>Edisonが接続されているUSBポート(Macであれば/dev/cu.usbserial-xxxx[FTDI])</td>
+</tr>
+<tr class="row-odd"><td>Baud Rate</td>
+<td>115200</td>
+</tr>
+<tr class="row-even"><td>Data Bits</td>
+<td>8</td>
+</tr>
+<tr class="row-odd"><td>Stop Bits</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>Parity</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>Teratermをご利用の場合、メニューの[設定]-[シリアルポート]からスピードを&#8221;115200&#8221;に変更するのを忘れないでください。</p>
+<p>MacOSをご利用の場合は、ターミナルから以下のコマンドを入力することで接続が可能です。</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo cu -s 115200 -l /dev/tty.usbserial-XXXXXXX
+Password: ←MacOSのrootパスワードを入力
+</pre></div>
+</div>
+<p>プロンプトが表示されれば接続成功です。loginのプロンプトで、ユーザ名”root”、パスワード”Password1”でログインしてください。</p>
+<div class="highlight-python"><div class="highlight"><pre>edison login: root
+Password: ******** ←パスワードを入力
+root@edison1: ~#
+</pre></div>
+</div>
+</div>
+<div class="section" id="wifi">
+<h2>2.3. WiFi設定<a class="headerlink" href="#wifi" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>WiFiの設定を行います。ログイン後、<strong>configure_edison &#8211;wifi</strong> コマンドでSSIDとパスワードの設定を実施してください。</p>
+<div class="highlight-python"><div class="highlight"><pre>root@edison1: ~# configure_edison --wifi
+
+Configre Edison: WiFi Connection
+
+Scanning: 8 seconds left..
+1. Exit WiFi setup
+2. Manually input a hidden SSID
+3. Guest
+4. xxxxxxxxx
+
+Enter 0 to rescan for networks.
+Enter 1 to exit.
+Enter 2 to input a hidden network SSID.
+Enter a number between 3 to N to choose one of the listed network SSIDs: ←Guestが表示されている番号を入力
+
+Is Guest corrrect? [Y or N]: ←Yを入力
+
+What is the network password?: ←WiFiのパスワードを入力
+Initiating connection to Guest. Please wait...
+Attempting to enable network access, please check &#39;wpa_cli status&#39; after a minute to confirm.
+Done. Please connect your laptop or PC to the same network as this device and go to http://x.x.x.x or http://edison.local in your browser.
+(Doneが出力されたら成功）
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. インテルEdisonの設定</a><ul>
+<li><a class="reference internal" href="#id1">2.1. センサーの接続</a></li>
+<li><a class="reference internal" href="#id2">2.2. シリアルポート接続</a></li>
+<li><a class="reference internal" href="#wifi">2.3. WiFi設定</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="01.html"
+                        title="前の章へ">1. イントロダクション</a></p>
+  <h3>このページ</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/02.txt"
+           rel="nofollow">ソースコードを表示</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>クイック検索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="01.html" title="1. イントロダクション"
+             >前へ</a> |</li>
+        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, aquaviter.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
+    </div>
+  </body>
+</html>

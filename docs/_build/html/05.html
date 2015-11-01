@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5. IoTボタンの作成 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
+    <link rel="prev" title="4. AWSサービスとの連携" href="04.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="04.html" title="4. AWSサービスとの連携"
+             accesskey="P">前へ</a> |</li>
+        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="iot">
+<h1>5. IoTボタンの作成<a class="headerlink" href="#iot" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Groveのボタンを利用してIoTボタンを作成します。ボタンを押すとAmazon SNSを通じて指定したメールアドレスにメールを送信するようにアクションを設定します。</p>
+<div class="section" id="id1">
+<h2>5.1. ルールの作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>edison/buttonトピックに到着したすべてのメッセージに対してアクションを設定します。</p>
+<p>&#8220;Create a resource&#8221;をクリックし、&#8221;Create a rule&#8221;をクリックします。&#8221;Create a rule&#8221;の画面で以下の設定値を入力します。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">項目</th>
+<th class="head">設定値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Name</td>
+<td>SendEmail</td>
+</tr>
+<tr class="row-odd"><td>Attribute</td>
+<td><a href="#id2"><span class="problematic" id="id3">*</span></a>(アスタリスク)</td>
+</tr>
+<tr class="row-even"><td>Topic Filter</td>
+<td>edison/button</td>
+</tr>
+<tr class="row-odd"><td>Condition</td>
+<td>入力しない</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/5-create-rule.png" src="_images/5-create-rule.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>&#8220;Choose an action&#8221;のリストから&#8221;Send message as a push notification (SNS)&#8221;を選択します。次に、SNSのトピックを作成するために[Create a new resource]をクリックします。別の画面にAmazon SNSの設定画面が表示されます。</p>
+<img alt="_images/5-create-rule-2.png" src="_images/5-create-rule-2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>[Create new Topic]をクリックします。</p>
+<img alt="_images/5-create-sns-topic-1.png" src="_images/5-create-sns-topic-1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>&#8220;Topic Name&#8221;と&#8221;Display Name&#8221;にそれぞれ&#8221;iotbutton&#8221;と入力し、[Create topic]をクリックします。</p>
+<img alt="_images/5-create-sns-topic-2.png" src="_images/5-create-sns-topic-2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>トピックの一覧から今回作成したiotbuttonのトピックを選択します。</p>
+<img alt="_images/5-create-sns-topic-3.png" src="_images/5-create-sns-topic-3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>[Create Subscription]をクリックします。</p>
+<img alt="_images/5-create-sns-topic-4.png" src="_images/5-create-sns-topic-4.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>&#8220;Protocol&#8221;のリストから&#8221;Email&#8221;を選択、&#8221;Endpoint&#8221;にすぐに受信が確認できるメールアドレスを入力し、[Create Subscription]をクリックしてください。</p>
+<img alt="_images/5-create-sns-topic-4.png" src="_images/5-create-sns-topic-4.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>先ほど入力したメールアドレスに確認メールが送信されます。&#8221;AWS Notification - Subscription Confirmation&#8221;というタイトルのメールを開き、本文中の&#8221;Confirm subscription&#8221;をクリックします。クリック後、&#8221;Subscription confirmed!&#8221;の画面が表示されます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>AWS IoTのルール作成画面に戻り、&#8221;SNS Target&#8221;からiotbuttonトピックを選択します。次に、[Create a new role]をクリックします。</p>
+<img alt="_images/5-create-rule-3.png" src="_images/5-create-rule-3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>IAMの設定画面が開きますので、[Allow]をクリックしてください。</p>
+<img alt="_images/5-create-rule-4.png" src="_images/5-create-rule-4.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>AWS IoTのルール作成画面に戻り、[Add Action]をクリックします。</p>
+<img alt="_images/5-create-rule-5.png" src="_images/5-create-rule-5.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>SNS Actionが追加されたことを確認し、[Create]をクリックします。</p>
+<img alt="_images/5-create-rule-6.png" src="_images/5-create-rule-6.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>リソースの一覧に作成したルールが表示されることを確認します。</p>
+<img alt="_images/5-create-rule-7.png" src="_images/5-create-rule-7.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>5.2. プログラムの実行<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">5. IoTボタンの作成</a><ul>
+<li><a class="reference internal" href="#id1">5.1. ルールの作成</a></li>
+<li><a class="reference internal" href="#id4">5.2. プログラムの実行</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="04.html"
+                        title="前の章へ">4. AWSサービスとの連携</a></p>
+  <h3>このページ</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/05.txt"
+           rel="nofollow">ソースコードを表示</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>クイック検索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="04.html" title="4. AWSサービスとの連携"
+             >前へ</a> |</li>
+        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, aquaviter.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
+    </div>
+  </body>
+</html>
