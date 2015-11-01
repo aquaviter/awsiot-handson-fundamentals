@@ -1,2 +1,2 @@
 .DS_Store
-iot-button/node_modules/
+iot-button/node_modules/*
