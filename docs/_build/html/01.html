@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
-    <link rel="next" title="2. 2. インテルEdisonの設定" href="02.html" />
+    <link rel="next" title="2. インテルEdisonの設定" href="02.html" />
     <link rel="prev" title="AWS IoT ハンズオン ~基本編~" href="index.html" /> 
   </head>
   <body>
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="02.html" title="2. 2. インテルEdisonの設定"
+          <a href="02.html" title="2. インテルEdisonの設定"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
           <a href="index.html" title="AWS IoT ハンズオン ~基本編~"
@@ -54,29 +54,45 @@
 <h1>1. イントロダクション<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id2">
 <h2>1.1. ハンズオンシナリオ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><strong>セクション1: IoTボタンを作ってみよう</strong></p>
+<p><strong>シナリオ1: センサーデータを送信してみよう</strong></p>
+<p>EdisonからAWS IoTのトピックに照度センサーのデータを送信し、AWS IoTでルールに基づきNoSQLデータベースDynamoDBへの保存を行います。また、しきい値を下回った場合、E-mailでアラートを送信するようにルールを設定します。本ハンズオンにより、センサーからのデータ取得および時系列データの保存、しきい値に対するアクションの手順を確認することができます。</p>
+<img alt="_images/senario1.png" src="_images/senario1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>シナリオ2: アプリケーションからLEDを点灯させよう</strong></p>
+<p>WebアプリケーションからEdisonに接続されたLEDの点灯/消灯の操作を行います。EdisonはAWS IoTのShadowのMQTTトピックをSubscribeしており、アプリケーションはShadowにコマンドを送信することでEdison側ではリアルタイムにコマンドを受信することができます。</p>
+<img alt="images/senario2.png" src="images/senario2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>シナリオ3: IoTボタンを作ってみよう</strong></p>
 <p>Intel Edisonに接続されたボタンを押すと、Amazon SNSを通じて指定したメールアドレスにメールを送信します。</p>
-<p><strong>セクション2: センサーデータを送信してみよう</strong></p>
-<p>Intel Edisonに接続された照度センサーのデータをAWSの各サービスにストアします。
-EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきS3バケットへのアーカイブ、DynamoDBへのPutを行います。</p>
-<img alt="_images/vol1.png" src="_images/vol1.png" />
+<img alt="images/senario3.png" src="images/senario3.png" />
 </div>
 <div class="section" id="id3">
 <h2>1.2. 利用するデバイス、アプリケーション、サービス<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><strong>インテルEdison</strong></p>
-<p>インテル社が提供する開発用のシングルボードコンピュータです。本ハンズオンではセンサーからのデータ取得、AWS IoTへのデータ送信に利用します。
-<a class="reference external" href="http://www.intel.co.jp/content/www/jp/ja/do-it-yourself/edison.html">http://www.intel.co.jp/content/www/jp/ja/do-it-yourself/edison.html</a></p>
+<dl class="docutils">
+<dt>インテル社が提供する開発用のシングルボードコンピュータです。本ハンズオンではセンサーからのデータ取得、AWS IoTへのデータ送信に利用します。</dt>
+<dd><a class="reference external" href="http://www.intel.co.jp/content/www/jp/ja/do-it-yourself/edison.html">http://www.intel.co.jp/content/www/jp/ja/do-it-yourself/edison.html</a></dd>
+</dl>
 <p><strong>Groveスターターキット</strong></p>
-<p>Aruduinoなどの開発用ボードに接続可能なセンサーやケーブルが同梱されたキット。本ハンズオンではスターターキットの中のセンサーを選んでIntel Edisonに接続し、センサーデータを取得します。
-<a class="reference external" href="http://www.seeedstudio.com/document/Grove%20Starter%20Kit.pdf">http://www.seeedstudio.com/document/Grove%20Starter%20Kit.pdf</a>
-<a class="reference external" href="http://www.seeedstudio.com/wiki/GROVE_System">http://www.seeedstudio.com/wiki/GROVE_System</a></p>
+<dl class="docutils">
+<dt>Aruduinoなどの開発用ボードに接続可能なセンサーやケーブルが同梱されたキット。本ハンズオンではスターターキットの中のセンサーを選んでIntel Edisonに接続し、センサーデータを取得します。</dt>
+<dd><a class="reference external" href="http://www.seeedstudio.com/document/Grove%20Starter%20Kit.pdf">http://www.seeedstudio.com/document/Grove%20Starter%20Kit.pdf</a>
+<a class="reference external" href="http://www.seeedstudio.com/wiki/GROVE_System">http://www.seeedstudio.com/wiki/GROVE_System</a></dd>
+</dl>
 <p><strong>AWSアカウント</strong></p>
 <p>AWSコマンドラインでiotおよびiot-dataを実行できるようにご利用のPCの設定をお願いします。
-インストールの手順はこちらのとおりです。
-<a class="reference external" href="https://aws.amazon.com/jp/register-flow/">https://aws.amazon.com/jp/register-flow/</a></p>
+インストールの手順はこちらのとおりです。</p>
+<blockquote>
+<div><a class="reference external" href="https://aws.amazon.com/jp/register-flow/">https://aws.amazon.com/jp/register-flow/</a></div></blockquote>
 <p><strong>AWS IoT</strong></p>
-<p>接続されたデバイスが安全かつ簡単にクラウドアプリケーションやその他のデバイスとやりとりするためのマネージド型プラットフォームです。本ハンズオンではデバイスからのデータ受信、デバイスのリモート制御などで利用します。
-<a class="reference external" href="https://aws.amazon.com/jp/iot/">https://aws.amazon.com/jp/iot/</a></p>
+<dl class="docutils">
+<dt>接続されたデバイスが安全かつ簡単にクラウドアプリケーションやその他のデバイスとやりとりするためのマネージド型プラットフォームです。本ハンズオンではデバイスからのデータ受信、デバイスのリモート制御などで利用します。</dt>
+<dd><a class="reference external" href="https://aws.amazon.com/jp/iot/">https://aws.amazon.com/jp/iot/</a></dd>
+</dl>
 </div>
 </div>
 
@@ -100,7 +116,7 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
                         title="前の章へ">AWS IoT ハンズオン ~基本編~</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="02.html"
-                        title="次の章へ">2. 2. インテルEdisonの設定</a></p>
+                        title="次の章へ">2. インテルEdisonの設定</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/01.txt"
@@ -130,7 +146,7 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="02.html" title="2. 2. インテルEdisonの設定"
+          <a href="02.html" title="2. インテルEdisonの設定"
              >次へ</a> |</li>
         <li class="right" >
           <a href="index.html" title="AWS IoT ハンズオン ~基本編~"

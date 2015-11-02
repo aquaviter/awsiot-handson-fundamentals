@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4. AWSサービスとの連携 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>6. その他の設定 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
-    <link rel="next" title="5. IoTボタンの作成" href="05.html" />
-    <link rel="prev" title="3. AWS IoT基本設定" href="03.html" /> 
+    <link rel="next" title="7. ハンズオン終了後" href="07.html" />
+    <link rel="prev" title="5. IoTボタンの作成" href="05.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="05.html" title="5. IoTボタンの作成"
+          <a href="07.html" title="7. ハンズオン終了後"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="03.html" title="3. AWS IoT基本設定"
+          <a href="05.html" title="5. IoTボタンの作成"
              accesskey="P">前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
@@ -50,55 +50,38 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="aws">
-<h1>4. AWSサービスとの連携<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Intel Edisonに接続された照度センサーのデータをAWSの各サービスにストアします。
-EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきS3バケットへのアーカイブ、DynamoDBへのPutを行います。</p>
-<img alt="images/vol1.png" src="images/vol1.png" />
+  <div class="section" id="id1">
+<h1>6. その他の設定<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="cloudwatch-logs">
+<h2>6.1. CloudWatch Logsの設定<a class="headerlink" href="#cloudwatch-logs" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>AWS IoTのログはCloudWatch Logsで取得可能です。
+詳細な手順はこちらに掲載されています。</p>
+<p><a class="reference external" href="http://docs.aws.amazon.com/iot/latest/developerguide/cloud-w">http://docs.aws.amazon.com/iot/latest/developerguide/cloud-w</a></p>
+<p>まず、メニュー画面から&#8221;Identity &amp; Access Management&#8221;をクリックし、IAMの設定画面を表示します。画面左のメニューから&#8221;Roles&#8221;をクリックし、[Create New Role]をクリックします。</p>
+<img alt="_images/6-logs-1.png" src="_images/6-logs-1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="section" id="dynamodb">
-<h2>4.1. DynamoDBのテーブル作成<a class="headerlink" href="#dynamodb" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>センサーデータを保存するDynamoDBのテーブルを作成します。手順を簡略化するためにCloud Formationを利用します。テーブルのスキーマは以下のとおりです。</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">設定項目</th>
-<th class="head">値</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>テーブル名</td>
-<td>awsiot-handson-rawdata</td>
-</tr>
-<tr class="row-odd"><td>プライマリキータイプ</td>
-<td>Hash and Range</td>
-</tr>
-<tr class="row-even"><td>ハッシュキー属性値</td>
-<td>topic (String)</td>
-</tr>
-<tr class="row-odd"><td>レンジキー属性値</td>
-<td>timestamp (String)</td>
-</tr>
-</tbody>
-</table>
+<p>&#8220;Role Name&#8221;にロール名を入力し、[Next Step]をクリックします。</p>
+<img alt="_images/6-logs-2.png" src="_images/6-logs-2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>サービスメニューから&#8221;Cloud Formation&#8221;をクリックします。</p>
-<p>[Create New Stack]をクリックします。</p>
-<p>&#8220;Stack Name&#8221;にスタック名&#8221;awsiot-handson-stack&#8221;を入力します。</p>
-<p>以下のURLを入力します。</p>
+<p>&#8220;Select Role Type&#8221;で&#8221;AWS IoT&#8221;の[Select]をクリックします。</p>
+<img alt="_images/6-logs-3.png" src="_images/6-logs-3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
-<div class="section" id="aws-iot">
-<h2>4.2. AWS IoT ルールの作成<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>&#8220;Attach Policy&#8221;で&#8221;AWSIoTLogging&#8221;のビルトインポリシーにチェックを入れ、[Next Step]をクリックします。</p>
+<img alt="_images/6-logs-4.png" src="_images/6-logs-4.png" />
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
-<div class="section" id="id1">
-<h2>4.3. プログラムの実行<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>内容を確認します。次の手順のコマンドラインでARNが必要になるため、&#8221;Role ARN&#8221;の文字列をコピーしておきます。問題なければ[Create Role]をクリックしてください。</p>
+<img alt="_images/6-logs-5.png" src="_images/6-logs-5.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 </div>
 
@@ -110,23 +93,21 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">4. AWSサービスとの連携</a><ul>
-<li><a class="reference internal" href="#dynamodb">4.1. DynamoDBのテーブル作成</a></li>
-<li><a class="reference internal" href="#aws-iot">4.2. AWS IoT ルールの作成</a></li>
-<li><a class="reference internal" href="#id1">4.3. プログラムの実行</a></li>
+<li><a class="reference internal" href="#">6. その他の設定</a><ul>
+<li><a class="reference internal" href="#cloudwatch-logs">6.1. CloudWatch Logsの設定</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>前のトピックへ</h4>
-  <p class="topless"><a href="03.html"
-                        title="前の章へ">3. AWS IoT基本設定</a></p>
-  <h4>次のトピックへ</h4>
   <p class="topless"><a href="05.html"
-                        title="次の章へ">5. IoTボタンの作成</a></p>
+                        title="前の章へ">5. IoTボタンの作成</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="07.html"
+                        title="次の章へ">7. ハンズオン終了後</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/04.txt"
+    <li><a href="_sources/06.txt"
            rel="nofollow">ソースコードを表示</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -153,10 +134,10 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="05.html" title="5. IoTボタンの作成"
+          <a href="07.html" title="7. ハンズオン終了後"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="03.html" title="3. AWS IoT基本設定"
+          <a href="05.html" title="5. IoTボタンの作成"
              >前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
