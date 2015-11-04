@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5. # -- coding: utf-8 -- &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>2. インテルEdisonの設定 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
-    <link rel="next" title="10. # -- coding: utf-8 --" href="03.html" />
-    <link rel="prev" title="1. # -- coding: utf-8 --" href="01.html" /> 
+    <link rel="next" title="3. AWS IoT基本設定" href="03.html" />
+    <link rel="prev" title="1. イントロダクション" href="01.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="03.html" title="10. # -- coding: utf-8 --"
+          <a href="03.html" title="3. AWS IoT基本設定"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="01.html" title="1. # -- coding: utf-8 --"
+          <a href="01.html" title="1. イントロダクション"
              accesskey="P">前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
@@ -50,15 +50,11 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="coding-utf-8">
-<h1>5. # -<em>- coding: utf-8 -</em>-<a class="headerlink" href="#coding-utf-8" title="このヘッドラインへのパーマリンク">¶</a></h1>
-</div>
-<div class="section" id="edison">
-<h1>6. インテルEdisonの設定<a class="headerlink" href="#edison" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="edison">
+<h1>2. インテルEdisonの設定<a class="headerlink" href="#edison" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>インテルEdisonの準備を行います。</p>
-</div>
 <div class="section" id="id1">
-<h1>7. センサーの接続<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>2.1. センサーの接続<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Grove Kitの中から照度センサーとLED、LCDを取出してください。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -115,7 +111,7 @@
 <img alt="_images/2-edison-1.png" src="_images/2-edison-1.png" />
 </div>
 <div class="section" id="id2">
-<h1>8. シリアルポート接続<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>2.2. シリアルポート接続<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Edisonへ接続します。まず、Edisonにシリアルポート経由で接続します。USBケーブルでPCとEdisonを接続し、シリアルコンソールを開きます。</p>
 <p><strong>Windowsの場合</strong></p>
 <p>USBケーブルとACアダプタを図のように接続してください。</p>
@@ -166,7 +162,7 @@ root@edison1: ~#
 </div>
 </div>
 <div class="section" id="wifi">
-<h1>9. WiFi設定<a class="headerlink" href="#wifi" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>2.3. WiFi設定<a class="headerlink" href="#wifi" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>WiFiの設定を行います。ログイン後、<strong>configure_edison &#8211;wifi</strong> コマンドでSSIDとパスワードの設定を実施してください。</p>
 <div class="highlight-python"><div class="highlight"><pre>root@edison1: ~# configure_edison --wifi
 
@@ -193,6 +189,7 @@ Done. Please connect your laptop or PC to the same network as this device and go
 </pre></div>
 </div>
 </div>
+</div>
 
 
           </div>
@@ -202,19 +199,20 @@ Done. Please connect your laptop or PC to the same network as this device and go
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">5. # -<em>- coding: utf-8 -</em>-</a></li>
-<li><a class="reference internal" href="#edison">6. インテルEdisonの設定</a></li>
-<li><a class="reference internal" href="#id1">7. センサーの接続</a></li>
-<li><a class="reference internal" href="#id2">8. シリアルポート接続</a></li>
-<li><a class="reference internal" href="#wifi">9. WiFi設定</a></li>
+<li><a class="reference internal" href="#">2. インテルEdisonの設定</a><ul>
+<li><a class="reference internal" href="#id1">2.1. センサーの接続</a></li>
+<li><a class="reference internal" href="#id2">2.2. シリアルポート接続</a></li>
+<li><a class="reference internal" href="#wifi">2.3. WiFi設定</a></li>
+</ul>
+</li>
 </ul>
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="01.html"
-                        title="前の章へ">1. # -<em>- coding: utf-8 -</em>-</a></p>
+                        title="前の章へ">1. イントロダクション</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="03.html"
-                        title="次の章へ">10. # -<em>- coding: utf-8 -</em>-</a></p>
+                        title="次の章へ">3. AWS IoT基本設定</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/02.txt"
@@ -244,10 +242,10 @@ Done. Please connect your laptop or PC to the same network as this device and go
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="03.html" title="10. # -- coding: utf-8 --"
+          <a href="03.html" title="3. AWS IoT基本設定"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="01.html" title="1. # -- coding: utf-8 --"
+          <a href="01.html" title="1. イントロダクション"
              >前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>

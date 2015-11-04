@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>14. # -- coding: utf-8 -- &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>4. AWSサービスとの連携 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
-    <link rel="next" title="18. # -- coding: utf-8 --" href="05.html" />
-    <link rel="prev" title="10. # -- coding: utf-8 --" href="03.html" /> 
+    <link rel="next" title="5. LEDのリモート制御" href="05.html" />
+    <link rel="prev" title="3. AWS IoT基本設定" href="03.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="05.html" title="18. # -- coding: utf-8 --"
+          <a href="05.html" title="5. LEDのリモート制御"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="03.html" title="10. # -- coding: utf-8 --"
+          <a href="03.html" title="3. AWS IoT基本設定"
              accesskey="P">前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
@@ -50,20 +50,16 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="coding-utf-8">
-<h1>14. # -<em>- coding: utf-8 -</em>-<a class="headerlink" href="#coding-utf-8" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<blockquote>
-<div>AWSサービスとの連携</div></blockquote>
-<hr class="docutils" />
+  <div class="section" id="aws">
+<h1>4. AWSサービスとの連携<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>Intel Edisonに接続された照度センサーのデータをAWSの各サービスにストアします。
 EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきS3バケットへのアーカイブ、DynamoDBへのPutを行います。</p>
 <img alt="images/vol1.png" src="images/vol1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
 <div class="section" id="dynamodb">
-<h1>15. DynamoDBのテーブル作成<a class="headerlink" href="#dynamodb" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>4.1. DynamoDBのテーブル作成<a class="headerlink" href="#dynamodb" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>センサーデータを保存するDynamoDBのテーブルを作成します。手順を簡略化するためにCloud Formationを利用します。テーブルのスキーマは以下のとおりです。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -99,10 +95,11 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 <p>以下のURLを入力します。</p>
 </div>
 <div class="section" id="aws-iot">
-<h1>16. AWS IoT ルールの作成<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>4.2. AWS IoT ルールの作成<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h2>
 </div>
 <div class="section" id="id1">
-<h1>17. プログラムの実行<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2>4.3. プログラムの実行<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
 </div>
 
 
@@ -113,18 +110,20 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">14. # -<em>- coding: utf-8 -</em>-</a></li>
-<li><a class="reference internal" href="#dynamodb">15. DynamoDBのテーブル作成</a></li>
-<li><a class="reference internal" href="#aws-iot">16. AWS IoT ルールの作成</a></li>
-<li><a class="reference internal" href="#id1">17. プログラムの実行</a></li>
+<li><a class="reference internal" href="#">4. AWSサービスとの連携</a><ul>
+<li><a class="reference internal" href="#dynamodb">4.1. DynamoDBのテーブル作成</a></li>
+<li><a class="reference internal" href="#aws-iot">4.2. AWS IoT ルールの作成</a></li>
+<li><a class="reference internal" href="#id1">4.3. プログラムの実行</a></li>
+</ul>
+</li>
 </ul>
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="03.html"
-                        title="前の章へ">10. # -<em>- coding: utf-8 -</em>-</a></p>
+                        title="前の章へ">3. AWS IoT基本設定</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="05.html"
-                        title="次の章へ">18. # -<em>- coding: utf-8 -</em>-</a></p>
+                        title="次の章へ">5. LEDのリモート制御</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/04.txt"
@@ -154,10 +153,10 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="05.html" title="18. # -- coding: utf-8 --"
+          <a href="05.html" title="5. LEDのリモート制御"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="03.html" title="10. # -- coding: utf-8 --"
+          <a href="03.html" title="3. AWS IoT基本設定"
              >前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
