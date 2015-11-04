@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>AWS IoT ハンズオン ~基本編~ &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title># -- coding: utf-8 -- &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="#" />
-    <link rel="next" title="1. イントロダクション" href="01.html" /> 
+    <link rel="next" title="1. # -- coding: utf-8 --" href="01.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,7 +35,7 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="01.html" title="1. イントロダクション"
+          <a href="01.html" title="1. # -- coding: utf-8 --"
              accesskey="N">次へ</a> |</li>
         <li><a href="#">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
@@ -46,21 +46,33 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="aws-iot">
-<h1>AWS IoT ハンズオン ~基本編~<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="coding-utf-8">
+<h1># -<em>- coding: utf-8 -</em>-<a class="headerlink" href="#coding-utf-8" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<blockquote>
+<div>AWS IoT ハンズオン ~基本編~</div></blockquote>
+<hr class="docutils" />
 <div class="toctree-wrapper compound">
 </div>
 <p>本書はAWS IoTおよびAWSの各サービスを利用してIoTの基本的なシステムを構築するためのハンズオン手順 について記述しております。</p>
+</div>
 <div class="section" id="id1">
-<h2>前提条件<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h1>前提条件<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <ul class="simple">
 <li>インテルEdisonまたはRaspberry Piなどの機器で開発経験がある方</li>
 <li>IoTを活用したアプリケーション構築をご検討されているデベロッパーの方</li>
 <li>AWSクラウドを活用したシステム・アプリケーション開発に従事されている方</li>
+<li>UNIXの基本的なコマンドの利用経験がある方</li>
 </ul>
 </div>
 <div class="section" id="id2">
-<h2>事前準備<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h1>注意事項<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>AWSのサービス利用料金は受講者の方にご負担いただきますよう、ご了承ください。</li>
+<li>ハンズオンに必要な機材は貸出品となりますので、終了後は必ず返却をお願いします。</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h1>事前準備<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>以下のURLから必要なドライバをダウンロードし、インストールをお願いします。</p>
 <p><strong>Windowsの場合</strong></p>
 <ul class="simple">
@@ -72,25 +84,24 @@
 <li><a class="reference external" href="https://s3-ap-northeast-1.amazonaws.com/toshiake-iot-handson/classmethod-devday/tools/mac/FTDIUSBSerialDriver_v2_2_18.dmg">MacOS FTDI ドライバのインストール</a></li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h2>サンプルプログラム<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-</div>
 <div class="section" id="id4">
-<h2>よくあるトラブル<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h1>サンプルプログラム<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h1>
+</div>
+<div class="section" id="id5">
+<h1>よくあるトラブル<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><strong>AWS IoTのupdate shadow CLIを実行時にSSLエラーとなる</strong></p>
 <p>python 2.7.10にアップデート、AWS CLIの再インストールでOK。</p>
 </div>
-<div class="section" id="id5">
-<h2>参考情報<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id6">
+<h1>参考情報<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <ul class="simple">
 <li><a class="reference external" href="http://edison-lab.jp/flash/windows/">インテル Edisonの初期化とファームアップデート(Win)</a></li>
 <li><a class="reference external" href="http://edison-lab.jp/flash/mac/">インテル Edisonの初期化とファームアップデート(MacOS)</a></li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h2>ハッシュタグ<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id7">
+<h1>ハッシュタグ<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>Twitterのハッシュタグはこちらになります。 <strong>#AWS_IoT_JP</strong></p>
-</div>
 </div>
 
 
@@ -101,20 +112,19 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">AWS IoT ハンズオン ~基本編~</a><ul>
+<li><a class="reference internal" href="#"># -<em>- coding: utf-8 -</em>-</a></li>
 <li><a class="reference internal" href="#id1">前提条件</a></li>
-<li><a class="reference internal" href="#id2">事前準備</a></li>
-<li><a class="reference internal" href="#id3">サンプルプログラム</a></li>
-<li><a class="reference internal" href="#id4">よくあるトラブル</a></li>
-<li><a class="reference internal" href="#id5">参考情報</a></li>
-<li><a class="reference internal" href="#id6">ハッシュタグ</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#id2">注意事項</a></li>
+<li><a class="reference internal" href="#id3">事前準備</a></li>
+<li><a class="reference internal" href="#id4">サンプルプログラム</a></li>
+<li><a class="reference internal" href="#id5">よくあるトラブル</a></li>
+<li><a class="reference internal" href="#id6">参考情報</a></li>
+<li><a class="reference internal" href="#id7">ハッシュタグ</a></li>
 </ul>
 
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="01.html"
-                        title="次の章へ">1. イントロダクション</a></p>
+                        title="次の章へ">1. # -<em>- coding: utf-8 -</em>-</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -144,7 +154,7 @@
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="01.html" title="1. イントロダクション"
+          <a href="01.html" title="1. # -- coding: utf-8 --"
              >次へ</a> |</li>
         <li><a href="#">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>

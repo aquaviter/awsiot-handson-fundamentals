@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. イントロダクション &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>1. # -- coding: utf-8 -- &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
-    <link rel="next" title="2. インテルEdisonの設定" href="02.html" />
-    <link rel="prev" title="AWS IoT ハンズオン ~基本編~" href="index.html" /> 
+    <link rel="next" title="5. # -- coding: utf-8 --" href="02.html" />
+    <link rel="prev" title="# -- coding: utf-8 --" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="02.html" title="2. インテルEdisonの設定"
+          <a href="02.html" title="5. # -- coding: utf-8 --"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="index.html" title="AWS IoT ハンズオン ~基本編~"
+          <a href="index.html" title="# -- coding: utf-8 --"
              accesskey="P">前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
@@ -50,19 +50,20 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="id1">
-<h1>1. イントロダクション<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<div class="section" id="id2">
-<h2>1.1. ハンズオンシナリオ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><strong>シナリオ1: センサーデータを送信してみよう</strong></p>
-<p>EdisonからAWS IoTのトピックに照度センサーのデータを送信し、AWS IoTでルールに基づきNoSQLデータベースDynamoDBへの保存を行います。また、しきい値を下回った場合、E-mailでアラートを送信するようにルールを設定します。本ハンズオンにより、センサーからのデータ取得および時系列データの保存、しきい値に対するアクションの手順を確認することができます。</p>
-<img alt="_images/senario1.png" src="_images/senario1.png" />
-<div class="line-block">
-<div class="line"><br /></div>
+  <div class="section" id="coding-utf-8">
+<h1>1. # -<em>- coding: utf-8 -</em>-<a class="headerlink" href="#coding-utf-8" title="このヘッドラインへのパーマリンク">¶</a></h1>
 </div>
-<p><strong>シナリオ2: アプリケーションからLEDを点灯させよう</strong></p>
+<div class="section" id="id1">
+<h1>2. イントロダクション<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+</div>
+<div class="section" id="id2">
+<h1>3. ハンズオンシナリオ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><strong>シナリオ1: アプリケーションからLEDをリモート制御</strong></p>
 <p>WebアプリケーションからEdisonに接続されたLEDの点灯/消灯の操作を行います。EdisonはAWS IoTのShadowのMQTTトピックをSubscribeしており、アプリケーションはShadowにコマンドを送信することでEdison側ではリアルタイムにコマンドを受信することができます。</p>
-<img alt="images/senario2.png" src="images/senario2.png" />
+<img alt="_images/senario1.png" src="_images/senario1.png" />
+<p><strong>シナリオ2: センサーデータの送信</strong></p>
+<p>EdisonからAWS IoTのトピックに照度センサーのデータを送信し、AWS IoTでルールに基づきNoSQLデータベースDynamoDBへの保存を行います。また、しきい値を下回った場合、E-mailでアラートを送信するようにルールを設定します。本ハンズオンにより、センサーからのデータ取得および時系列データの保存、しきい値に対するアクションの手順を確認することができます。</p>
+<img alt="_images/senario2.png" src="_images/senario2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -71,7 +72,7 @@
 <img alt="images/senario3.png" src="images/senario3.png" />
 </div>
 <div class="section" id="id3">
-<h2>1.2. 利用するデバイス、アプリケーション、サービス<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h1>4. 利用するデバイス、アプリケーション、サービス<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p><strong>インテルEdison</strong></p>
 <dl class="docutils">
 <dt>インテル社が提供する開発用のシングルボードコンピュータです。本ハンズオンではセンサーからのデータ取得、AWS IoTへのデータ送信に利用します。</dt>
@@ -93,7 +94,15 @@
 <dt>接続されたデバイスが安全かつ簡単にクラウドアプリケーションやその他のデバイスとやりとりするためのマネージド型プラットフォームです。本ハンズオンではデバイスからのデータ受信、デバイスのリモート制御などで利用します。</dt>
 <dd><a class="reference external" href="https://aws.amazon.com/jp/iot/">https://aws.amazon.com/jp/iot/</a></dd>
 </dl>
-</div>
+<p><strong>Amazon DynamoDB</strong></p>
+<p>マネージド型のNoSQLサービスで、高速で予測可能なパフォーマンスとシームレスな拡張性が特長です。本ハンズオンでは照度センサーで測定したデータを格納する時系列データベースとして利用します。</p>
+<blockquote>
+<div><a class="reference external" href="https://aws.amazon.com/jp/dynamodb/">https://aws.amazon.com/jp/dynamodb/</a></div></blockquote>
+<p><strong>Amazon SNS (Simple Notification Service)</strong></p>
+<p><strong>Amazon CloudWatch</strong></p>
+<p>AWSクラウドリソースとAWSで実行するアプリケーションのモニタリングサービスです。メトリクスの収集、ログファイルの収集が可能です。本ハンズオンではCloudWatch Logsを利用してAWS IoTのログを収集、閲覧します。</p>
+<blockquote>
+<div><a class="reference external" href="https://aws.amazon.com/jp/cloudwatch/">https://aws.amazon.com/jp/cloudwatch/</a></div></blockquote>
 </div>
 
 
@@ -104,19 +113,18 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">1. イントロダクション</a><ul>
-<li><a class="reference internal" href="#id2">1.1. ハンズオンシナリオ</a></li>
-<li><a class="reference internal" href="#id3">1.2. 利用するデバイス、アプリケーション、サービス</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">1. # -<em>- coding: utf-8 -</em>-</a></li>
+<li><a class="reference internal" href="#id1">2. イントロダクション</a></li>
+<li><a class="reference internal" href="#id2">3. ハンズオンシナリオ</a></li>
+<li><a class="reference internal" href="#id3">4. 利用するデバイス、アプリケーション、サービス</a></li>
 </ul>
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="index.html"
-                        title="前の章へ">AWS IoT ハンズオン ~基本編~</a></p>
+                        title="前の章へ"># -<em>- coding: utf-8 -</em>-</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="02.html"
-                        title="次の章へ">2. インテルEdisonの設定</a></p>
+                        title="次の章へ">5. # -<em>- coding: utf-8 -</em>-</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/01.txt"
@@ -146,10 +154,10 @@
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="02.html" title="2. インテルEdisonの設定"
+          <a href="02.html" title="5. # -- coding: utf-8 --"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="index.html" title="AWS IoT ハンズオン ~基本編~"
+          <a href="index.html" title="# -- coding: utf-8 --"
              >前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
