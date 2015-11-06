@@ -3,9 +3,10 @@
 ===================
 
 AWS CLIを実行し、Intel Edisonに接続されたLEDのON/OFFを行います。AWS IoTのShadowを利用してブラウザからEdisonのステータスの変更リクエストを送信し、Edisonは変更通知を元にLEDをOFF/ONします。また、完了後は最新のステータスをShadowにアップデートします。
-こちらの操作はAWS CLIが利用できるご自分のPCなどから行ってください。
 
-..image:: images/senario2.png
+.. image:: images/senario2.png
+
+
 
 プログラムの実行
 ================
@@ -18,7 +19,22 @@ Edison上で以下のプログラムを実行します。
 
 マネージメントコンソールのAWS IoTを開き、リソースの一覧から"edison"を選択します。
 
-右の詳細画面から
+右の詳細画面から"Update State"をクリックし、"State Detail"の画面に以下のJSONを入力してください。入力が終わったら"Update State"をクリックします。クリック後、EdisonのLEDが点灯することを確認してください。
 
+::
+   
+   {
+     "reported": {
+       "led": "off"
+     },
+     "desired": {
+       "led": "on"
+     }
+   }
 
+|
+
+.. image:: images/5-led-1.png
+
+"desired"内にある"led"アイテムの値をoff/onのように記述を変更することでLEDの消灯/点灯を行なうことができます。
 

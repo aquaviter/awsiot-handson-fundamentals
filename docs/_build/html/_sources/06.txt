@@ -1,5 +1,5 @@
 ===================================
-その他の設定
+その他の設定（オプション）
 ===================================
 
 
@@ -9,7 +9,7 @@ CloudWatch Logsの設定
 AWS IoTのログはCloudWatch Logsで取得可能です。
 詳細な手順はこちらに掲載されています。
 
-http://docs.aws.amazon.com/iot/latest/developerguide/cloud-w
+http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html
 
 まず、メニュー画面から"Identity & Access Management"をクリックし、IAMの設定画面を表示します。画面左のメニューから"Roles"をクリックし、[Create New Role]をクリックします。
 
@@ -40,5 +40,11 @@ http://docs.aws.amazon.com/iot/latest/developerguide/cloud-w
 .. image:: images/6-logs-5.png
 
 |
+
+以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。
+
+::
+   
+   aws iot set-logging-options --logging-options-payload roleArn=”arn:aws:iam::<your-aws-account-num>:role/IoTLoggingRole”,logLevel=”INFO”
 
 

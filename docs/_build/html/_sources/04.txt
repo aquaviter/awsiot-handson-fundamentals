@@ -42,7 +42,7 @@ DynamoDBのテーブル作成
 =========================== ===========================
 テーブル名                  awsiot-handson-rawdata
 プライマリキータイプ        Hash and Range
-ハッシュキー属性値          topic (String)
+ハッシュキー属性値          key (String)
 レンジキー属性値            timestamp (String)
 =========================== ===========================
 
@@ -177,6 +177,6 @@ AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。�
   Publish: {"timestamp":"2015-10-24T14:16:43.654Z","value":270}    
 
 
-DynamoDBのテーブルを確認し、データが格納されていることを確認してください。
+DynamoDBのテーブルを確認し、データが格納されていることを確認してください。テーブル一覧から"awsiot-handson-rawdata"をクリックし、テーブルのデータを表示します。
 
 .. image:: images/4-dynamodb-1.png           

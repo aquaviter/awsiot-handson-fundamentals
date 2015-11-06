@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
-    <link rel="next" title="6. その他の設定" href="06.html" />
+    <link rel="next" title="6. その他の設定（オプション）" href="06.html" />
     <link rel="prev" title="4. AWSサービスとの連携" href="04.html" /> 
   </head>
   <body>
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="06.html" title="6. その他の設定"
+          <a href="06.html" title="6. その他の設定（オプション）"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
           <a href="04.html" title="4. AWSサービスとの連携"
@@ -52,14 +52,28 @@
             
   <div class="section" id="led">
 <h1>5. LEDのリモート制御<a class="headerlink" href="#led" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>AWS CLIを実行し、Intel Edisonに接続されたLEDのON/OFFを行います。AWS IoTのShadowを利用してブラウザからEdisonのステータスの変更リクエストを送信し、Edisonは変更通知を元にLEDをOFF/ONします。また、完了後は最新のステータスをShadowにアップデートします。
-こちらの操作はAWS CLIが利用できるご自分のPCなどから行ってください。</p>
-<p>..image:: images/senario2.png</p>
+<p>AWS CLIを実行し、Intel Edisonに接続されたLEDのON/OFFを行います。AWS IoTのShadowを利用してブラウザからEdisonのステータスの変更リクエストを送信し、Edisonは変更通知を元にLEDをOFF/ONします。また、完了後は最新のステータスをShadowにアップデートします。</p>
+<img alt="_images/senario2.png" src="_images/senario2.png" />
 <div class="section" id="id1">
 <h2>5.1. プログラムの実行<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Edison上で以下のプログラムを実行します。</p>
 <p>マネージメントコンソールのAWS IoTを開き、リソースの一覧から&#8221;edison&#8221;を選択します。</p>
-<p>右の詳細画面から</p>
+<p>右の詳細画面から&#8221;Update State&#8221;をクリックし、&#8221;State Detail&#8221;の画面に以下のJSONを入力してください。入力が終わったら&#8221;Update State&#8221;をクリックします。クリック後、EdisonのLEDが点灯することを確認してください。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;reported&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;led&quot;</span><span class="p">:</span> <span class="s">&quot;off&quot;</span>
+  <span class="p">},</span>
+  <span class="s">&quot;desired&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;led&quot;</span><span class="p">:</span> <span class="s">&quot;on&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/5-led-1.png" src="_images/5-led-1.png" />
+<p>&#8220;desired&#8221;内にある&#8221;led&#8221;アイテムの値をoff/onのように記述を変更することでLEDの消灯/点灯を行なうことができます。</p>
 </div>
 </div>
 
@@ -82,7 +96,7 @@
                         title="前の章へ">4. AWSサービスとの連携</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="06.html"
-                        title="次の章へ">6. その他の設定</a></p>
+                        title="次の章へ">6. その他の設定（オプション）</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/05.txt"
@@ -112,7 +126,7 @@
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="06.html" title="6. その他の設定"
+          <a href="06.html" title="6. その他の設定（オプション）"
              >次へ</a> |</li>
         <li class="right" >
           <a href="04.html" title="4. AWSサービスとの連携"

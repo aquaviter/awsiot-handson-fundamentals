@@ -67,8 +67,10 @@ Download ~をクリックして、Public Key、Private Key、Certificateをそ�
 ============= ============================
 Name          awsiot-handson-policy
 Action        iot:*
-Resource      *
+Resource      * (アスタリスク)
 ============= ============================
+
+|
 
 .. image:: images/3-create-policy.png
 

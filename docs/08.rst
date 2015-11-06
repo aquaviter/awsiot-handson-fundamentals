@@ -1,0 +1,32 @@
+==========================
+AWS IoT Device SDK解説
+==========================
+
+本ハンズオンで利用したサンプルコードを元に、AWS IoT Device SDKの解説をします。
+
+シナリオ1の解説
+===============
+
+シナリオ1ではTopic(edison/illuminance)向けに照度センサーのデータをMQTTを利用してPublishします。
+
+
+
+シナリオ2の解説
+=============================
+
+シナリオ2ではShadowのdeltaトピックに対しSubscribeおよびupdateトピックに対しPublishを行っています。
+
+まず、証明書のパスを指定し、プライベート鍵、証明書、ルート証明書のパスを指定します。
+
+.. code-block:: javascript
+  :linenos:   
+
+     var thingShadows = awsIot.thingShadow({
+       keyPath: '/home/root/.node_app_slot/certs/privatekey.pem',
+       certPath: '/home/root/.node_app_slot/certs/cert.pem',
+       caPath: '/home/root/.node_app_slot/certs/rootca.crt',
+       clientId: 'edison_shadow_client',
+       region: 'ap-northeast-1'
+    });
+
+    

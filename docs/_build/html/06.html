@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>6. その他の設定 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>6. その他の設定（オプション） &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -51,12 +51,12 @@
           <div class="body">
             
   <div class="section" id="id1">
-<h1>6. その他の設定<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>6. その他の設定（オプション）<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="cloudwatch-logs">
 <h2>6.1. CloudWatch Logsの設定<a class="headerlink" href="#cloudwatch-logs" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>AWS IoTのログはCloudWatch Logsで取得可能です。
 詳細な手順はこちらに掲載されています。</p>
-<p><a class="reference external" href="http://docs.aws.amazon.com/iot/latest/developerguide/cloud-w">http://docs.aws.amazon.com/iot/latest/developerguide/cloud-w</a></p>
+<p><a class="reference external" href="http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html">http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html</a></p>
 <p>まず、メニュー画面から&#8221;Identity &amp; Access Management&#8221;をクリックし、IAMの設定画面を表示します。画面左のメニューから&#8221;Roles&#8221;をクリックし、[Create New Role]をクリックします。</p>
 <img alt="_images/6-logs-1.png" src="_images/6-logs-1.png" />
 <div class="line-block">
@@ -82,6 +82,10 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p>以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。</p>
+<div class="highlight-python"><div class="highlight"><pre>aws iot set-logging-options --logging-options-payload roleArn=”arn:aws:iam::&lt;your-aws-account-num&gt;:role/IoTLoggingRole”,logLevel=”INFO”
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -93,7 +97,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">6. その他の設定</a><ul>
+<li><a class="reference internal" href="#">6. その他の設定（オプション）</a><ul>
 <li><a class="reference internal" href="#cloudwatch-logs">6.1. CloudWatch Logsの設定</a></li>
 </ul>
 </li>
