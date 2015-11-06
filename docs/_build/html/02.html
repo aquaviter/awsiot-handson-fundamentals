@@ -59,8 +59,8 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>照度センサーはこちらです。</p>
-<img alt="images/2-illuminance-1.png" src="images/2-illuminance-1.png" />
+<p>照度センサーはこちらです。(LIGHTと書いてあります）</p>
+<img alt="_images/2-illuminance-1.png" src="_images/2-illuminance-1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -109,6 +109,9 @@
 <div class="line"><br /></div>
 </div>
 <img alt="_images/2-edison-1.png" src="_images/2-edison-1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="id2">
 <h2>2.2. シリアルポート接続<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -150,6 +153,10 @@
 </table>
 <p>Teratermをご利用の場合、メニューの[設定]-[シリアルポート]からスピードを&#8221;115200&#8221;に変更するのを忘れないでください。</p>
 <p>MacOSをご利用の場合は、ターミナルから以下のコマンドを入力することで接続が可能です。</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo screen /dev/tty.usbserial-XXXXXXX 115200
+</pre></div>
+</div>
+<p>または、</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo cu -s 115200 -l /dev/tty.usbserial-XXXXXXX
 Password: ←MacOSのrootパスワードを入力
 </pre></div>

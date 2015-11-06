@@ -3,16 +3,39 @@
 =====================
 
 Intel Edisonに接続された照度センサーのデータをAWSの各サービスにストアします。
-EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきS3バケットへのアーカイブ、DynamoDBへのPutを行います。 
+EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきDynamoDBへ保存します。 
 
-.. image:: images/vol1.png
+.. image:: images/senario1.png
 
 |
+
+センサーデータは以下のJSONフォーマットとします。
+
+::
+
+  {
+    "timestamp": "2015-10-24T14:16:37.305Z", ←ISO8601形式
+    "value": "300"                           ←アナログ値
+  }
+
+
 
 DynamoDBのテーブル作成
 ======================
 
-センサーデータを保存するDynamoDBのテーブルを作成します。手順を簡略化するためにCloud Formationを利用します。テーブルのスキーマは以下のとおりです。
+センサーデータを保存するDynamoDBのテーブルを作成します。サービスメニューから"DynamoDB"をクリックし、DynamoDBの設定画面を開きます。
+
+|
+
+[Create Tables]をクリックします。
+
+.. image:: images/4-create-dynamodb-table-1.png
+
+|
+
+"Create Table"の画面で以下の設定を入力し、[Continue]をクリックします。
+
+|
 
 =========================== ===========================
 設定項目                    値
@@ -25,22 +48,135 @@ DynamoDBのテーブル作成
 
 |
 
-サービスメニューから"Cloud Formation"をクリックします。
+.. image:: images/4-create-dynamodb-table-2.png
 
-[Create New Stack]をクリックします。
+|           
 
-"Stack Name"にスタック名"awsiot-handson-stack"を入力します。
+"Add Indexes (Optional)"の画面でそのまま[Continue]をクリック。
 
-以下のURLを入力します。
+.. image:: images/4-create-dynamodb-table-3.png
 
-..
-    https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/dynamodb.template
+|
+
+"Provisioned Throughput Capacity"の画面でそのまま[Continue]をクリック。
+
+.. image:: images/4-create-dynamodb-table-4.png
+
+|
+
+"Use Basic Alarms"のチェックを外し、[Continue]をクリック。
+
+.. image:: images/4-create-dynamodb-table-5.png
+
+|
+
+内容を確認し、[Create]をクリック。
+
+.. image:: images/4-create-dynamodb-table-6.png
+
+|
+
+リスト中に作成したテーブルが"CREATING"のステータスで表示されます。テーブルの作成までには少々時間がかかるため、次の手順に進んでください。
+
+
+.. image:: images/4-create-dynamodb-table-7.png
+
+|
 
 AWS IoT ルールの作成
 ====================
 
+"Resources"の[Create a resource]をクリックします。
+
+.. image:: images/4-create-rule-1.png
+
+|           
+
+
+[Create a rule]をクリックします。
+
+.. image:: images/4-create-rule-2.png
+
+|           
+
+スクリーンショットの赤枠で囲んだ部分について、以下の項目を入力します。
+
+|
+
+=========================== ===========================
+設定項目                    値
+=========================== ===========================
+Name                        SaveToDynamoDB
+Description                 任意
+Attribute                   *(アスタリスク)
+Topic Filter                edison/illuminance
+=========================== ===========================
+
+.. image:: images/4-create-rule-3.png
+
+|
+
+画面をスクロールし、"Choose an action"から"Insert a message into a Database table(DynamoDB)"を選択します。以下の値を入力します。"Role Name"では[Create a new policy]をクリックします。
+
+
+|
+
+=========================== ===========================
+設定項目                    値
+=========================== ===========================
+Hash Key Value              ${topic(2)}
+Range Key Value             ${timestamp()}
+Payload  Field              value
+=========================== ===========================
+
+|
+
+.. image:: images/4-create-rule-4.png
+
+|
+
+AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。以下の画面で[Allow]をクリックします。
+
+.. image:: images/4-create-rule-5.png
+
+|
+
+[Add Action]をクリックします。
+
+.. image:: images/4-create-rule-6.png
+
+|
+
+"DynamoDB Action"が追加されたことを確認したら、[Create]をクリックします。
+
+.. image:: images/4-create-rule-7.png
+
+|
+
+一覧に作成したルールが作成されたことを確認します。
+
+.. image:: images/4-create-rule-8.png
+
+
+
 プログラムの実行
 ================
 
+照度センサーから照度データを取得し、AWS IoTのメッセージブローカーへ送信するためのプログラムを実行します。サンプルプログラム内のawsiot-handson-fundamentals配下のsensorに移動し、プログラムを実行します。
+
+::
+
+  root@edison# cd awsiot-handson-fundamentals/sensor
+  root@edison# node main.js
+  Publish: {"timestamp":"2015-10-24T14:16:37.305Z","value":268}                                                                     
+  Publish: {"timestamp":"2015-10-24T14:16:38.365Z","value":268}                                                                     
+  Publish: {"timestamp":"2015-10-24T14:16:39.424Z","value":271}                                                                     
+  Publish: {"timestamp":"2015-10-24T14:16:40.484Z","value":270}                                                                     
+  Publish: {"timestamp":"2015-10-24T14:16:41.535Z","value":272}                                                                     
+  Publish: {"timestamp":"2015-10-24T14:16:42.595Z","value":269}                                                                     
+  Publish: {"timestamp":"2015-10-24T14:16:43.654Z","value":270}    
 
 
+DynamoDBのテーブルを確認し、データが格納されていることを確認してください。テーブル一覧から"awsiot-handson-rawdata"をクリックし、テーブルのデータを表示します。
+
+.. image:: images/4-dynamodb-1.png           

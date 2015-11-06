@@ -19,13 +19,6 @@ EdisonからAWS IoTのトピックに照度センサーのデータを送信し�
 
 .. image:: images/senario2.png
 
-| 
-           
-**シナリオ3: IoTボタンを作ってみよう**
-
-Intel Edisonに接続されたボタンを押すと、Amazon SNSを通じて指定したメールアドレスにメールを送信します。
-
-.. image:: images/senario3.png
            
 
 利用するデバイス、アプリケーション、サービス
@@ -36,11 +29,15 @@ Intel Edisonに接続されたボタンを押すと、Amazon SNSを通じて指�
 インテル社が提供する開発用のシングルボードコンピュータです。本ハンズオンではセンサーからのデータ取得、AWS IoTへのデータ送信に利用します。
     http://www.intel.co.jp/content/www/jp/ja/do-it-yourself/edison.html
 
+|    
+
 **Groveスターターキット**
 
 Aruduinoなどの開発用ボードに接続可能なセンサーやケーブルが同梱されたキット。本ハンズオンではスターターキットの中のセンサーを選んでIntel Edisonに接続し、センサーデータを取得します。
     http://www.seeedstudio.com/document/Grove%20Starter%20Kit.pdf
     http://www.seeedstudio.com/wiki/GROVE_System
+
+|    
 
 **AWSアカウント**
 
@@ -48,16 +45,22 @@ AWSコマンドラインでiotおよびiot-dataを実行できるようにご利
 インストールの手順はこちらのとおりです。
     https://aws.amazon.com/jp/register-flow/
 
+|    
+
 **AWS IoT**
 
 接続されたデバイスが安全かつ簡単にクラウドアプリケーションやその他のデバイスとやりとりするためのマネージド型プラットフォームです。本ハンズオンではデバイスからのデータ受信、デバイスのリモート制御などで利用します。
     https://aws.amazon.com/jp/iot/
+
+|    
 
 **Amazon DynamoDB**
 
 マネージド型のNoSQLサービスで、高速で予測可能なパフォーマンスとシームレスな拡張性が特長です。本ハンズオンでは照度センサーで測定したデータを格納する時系列データベースとして利用します。
 
     https://aws.amazon.com/jp/dynamodb/
+
+|    
 
 **Amazon SNS (Simple Notification Service)**
 
@@ -66,4 +69,6 @@ AWSコマンドラインでiotおよびiot-dataを実行できるようにご利
 AWSクラウドリソースとAWSで実行するアプリケーションのモニタリングサービスです。メトリクスの収集、ログファイルの収集が可能です。本ハンズオンではCloudWatch Logsを利用してAWS IoTのログを収集、閲覧します。
 
     https://aws.amazon.com/jp/cloudwatch/
+
+
 

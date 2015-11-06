@@ -7,5 +7,18 @@ AWS CLIを実行し、Intel Edisonに接続されたLEDのON/OFFを行います�
 
 ..image:: images/senario2.png
 
+プログラムの実行
+================
+
+Edison上で以下のプログラムを実行します。
+
+.. code:: shell
+  cd awsiot-handson-fundamentals/led
+  node main.js
+
+マネージメントコンソールのAWS IoTを開き、リソースの一覧から"edison"を選択します。
+
+右の詳細画面から
+
 
 

@@ -57,23 +57,47 @@
 <p>AWSマネージメントコンソールへログインし、画面右上のメニューから東京リージョンを選択します。
 サービス一覧から&#8221;AWS IoT&#8221;をクリックします。</p>
 <img alt="_images/3-servicemenu.png" src="_images/3-servicemenu.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>“Get Startedが表示される場合はそちらをクリックします。</p>
 <img alt="_images/3-getstart.png" src="_images/3-getstart.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>デバイス(Thing)を作成します。メニューの”Create a thing”をクリックします。Nameに”edison”と入力し、[Create]をクリックします。</p>
 <img alt="_images/3-create-thing.png" src="_images/3-create-thing.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>リソースの一覧で作成したデバイスが表示されます。</p>
 <img alt="_images/3-thing.png" src="_images/3-thing.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="certificate">
 <h2>3.2. 証明書(Certificate)の作成<a class="headerlink" href="#certificate" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>メニューの”Create a certificate”をクリックし、[1-Click Certificate Create]をクリックします。</p>
 <img alt="_images/3-create-cert.png" src="_images/3-create-cert.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>Download ~をクリックして、Public Key、Private Key、Certificateをそれぞれダウンロードします。</p>
 <img alt="_images/3-download-cert.png" src="_images/3-download-cert.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>画面下の作成した証明書をクリックし、画面右のActionsリストから[Activate]を選びます。</p>
 <img alt="_images/3-activate-cert.png" src="_images/3-activate-cert.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>”ACTIVE”になったことを確認します 。</p>
 <img alt="_images/3-activated-cert.png" src="_images/3-activated-cert.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="id2">
 <h2>3.3. ポリシーの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -104,14 +128,29 @@
 </tbody>
 </table>
 <img alt="_images/3-create-policy.png" src="_images/3-create-policy.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>作成したポリシーがリソースの一覧に表示されます。</p>
 <img alt="_images/3-policy.png" src="_images/3-policy.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>先ほど作成した証明書をポリシーに割当てます。リスト中の証明書をクリックし、[Actions]-[Attach a policy]をクリックしてください。</p>
 <img alt="_images/3-attach-policy.png" src="_images/3-attach-policy.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>“Confirm”の画面で、フォームにポリシー名”awsiot-handson-policy”を入力し、[Attach]をクリックします。</p>
 <img alt="_images/3-attach-policy-2.png" src="_images/3-attach-policy-2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>次に、デバイスと証明書の関連付けを行います。作成した証明書をリソース一覧の中から選択し、[Actions]-[Attach a thingクリックします。</p>
 <img alt="_images/3-attach-thing.png" src="_images/3-attach-thing.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>&#8220;Thing Name&#8221;にデバイス名: edisonを入力し、[Attach]をクリックします。</p>
 <img alt="_images/3-attach-thing-2.png" src="_images/3-attach-thing-2.png" />
 </div>

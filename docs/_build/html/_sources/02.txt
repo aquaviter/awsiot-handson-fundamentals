@@ -11,7 +11,7 @@ Grove Kitの中から照度センサーとLED、LCDを取出してください�
 
 |
 
-照度センサーはこちらです。
+照度センサーはこちらです。(LIGHTと書いてあります）
 
 .. image:: images/2-illuminance-1.png
 
@@ -52,7 +52,7 @@ I2C             LCD
 
 .. image:: images/2-edison-1.png
 
-
+|
 
    
 シリアルポート接続
@@ -87,6 +87,12 @@ Parity     none
 Teratermをご利用の場合、メニューの[設定]-[シリアルポート]からスピードを"115200"に変更するのを忘れないでください。
 
 MacOSをご利用の場合は、ターミナルから以下のコマンドを入力することで接続が可能です。
+
+::
+   
+   $ sudo screen /dev/tty.usbserial-XXXXXXX 115200
+
+または、
 
 ::
    
