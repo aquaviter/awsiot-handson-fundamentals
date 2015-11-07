@@ -1,9 +1,9 @@
-============================
-センサーデータのアップロード
-============================
+====================
+センサーデータの送信
+====================
 
 Intel Edisonに接続された照度センサーのデータをAWSの各サービスにストアします。
-EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきDynamoDBへ保存します。 
+EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきDynamoDBへ保存します。使用するDynamoDBのテーブル"awsiot-handson-rawdata"は「3.ハンズオン準備」で作成したCloud Formationのスタックに含まれています。
 
 .. image:: images/senario1.png
 
@@ -17,69 +17,6 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
     "timestamp": "2015-10-24T14:16:37.305Z", ←ISO8601形式
     "value": "300"                           ←アナログ値
   }
-
-
-
-DynamoDBのテーブル作成
-======================
-
-センサーデータを保存するDynamoDBのテーブルを作成します。サービスメニューから"DynamoDB"をクリックし、DynamoDBの設定画面を開きます。
-
-|
-
-[Create Tables]をクリックします。
-
-.. image:: images/5-create-dynamodb-table-1.png
-
-|
-
-"Create Table"の画面で以下の設定を入力し、[Continue]をクリックします。
-
-|
-
-=========================== ===========================
-設定項目                    値
-=========================== ===========================
-テーブル名                  awsiot-handson-rawdata
-プライマリキータイプ        Hash and Range
-ハッシュキー属性値          key (String)
-レンジキー属性値            timestamp (String)
-=========================== ===========================
-
-|
-
-.. image:: images/5-create-dynamodb-table-2.png
-
-|           
-
-"Add Indexes (Optional)"の画面でそのまま[Continue]をクリック。
-
-.. image:: images/5-create-dynamodb-table-3.png
-
-|
-
-"Provisioned Throughput Capacity"の画面でそのまま[Continue]をクリック。
-
-.. image:: images/5-create-dynamodb-table-4.png
-
-|
-
-"Use Basic Alarms"のチェックを外し、[Continue]をクリック。
-
-.. image:: images/5-create-dynamodb-table-5.png
-
-|
-
-内容を確認し、[Create]をクリック。
-
-.. image:: images/5-create-dynamodb-table-6.png
-
-|
-
-リスト中に作成したテーブルが"CREATING"のステータスで表示されます。テーブルの作成までには少々時間がかかるため、次の手順に進んでください。
-
-
-.. image:: images/5-create-dynamodb-table-7.png
 
 |
 
@@ -167,7 +104,7 @@ AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。�
 ::
 
   root@edison:~# cd awsiot-handson-fundamentals/sensor
-  root@edison:~/awsiot-handson-fundamentals/sensor# node main.js
+  root@edison:~# awsiot-handson-fundamentals/sensor# node main.js
   
   Publish: {"timestamp":"2015-10-24T14:16:37.305Z","value":268}
   Publish: {"timestamp":"2015-10-24T14:16:38.365Z","value":268}

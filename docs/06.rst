@@ -15,7 +15,9 @@ Edison上で以下のプログラムを実行します。
 
 .. code:: shell
   root@edison:~# cd awsiot-handson-fundamentals/led
-  root@edison:~/awsiot-handson-fundamentals/led# node main.js
+  root@edison:~# awsiot-handson-fundamentals/led# node main.js
+
+|          
 
 マネージメントコンソールのAWS IoTを開き、リソースの一覧から"edison"を選択します。
 
@@ -35,6 +37,8 @@ Edison上で以下のプログラムを実行します。
 |
 
 .. image:: images/6-led-1.png
+
+|   
 
 "desired"内にある"led"アイテムの値をoff/onのように記述を変更することでLEDの消灯/点灯を行なうことができます。
 

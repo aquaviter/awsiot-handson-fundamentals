@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5. センサーデータのアップロード &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>5. センサーデータの送信 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -51,9 +51,9 @@
           <div class="body">
             
   <div class="section" id="id1">
-<h1>5. センサーデータのアップロード<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>5. センサーデータの送信<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>Intel Edisonに接続された照度センサーのデータをAWSの各サービスにストアします。
-EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきDynamoDBへ保存します。</p>
+EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきDynamoDBへ保存します。使用するDynamoDBのテーブル&#8221;awsiot-handson-rawdata&#8221;は「3.ハンズオン準備」で作成したCloud Formationのスタックに含まれています。</p>
 <img alt="_images/senario1.png" src="_images/senario1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -65,81 +65,11 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 }
 </pre></div>
 </div>
-<div class="section" id="dynamodb">
-<h2>5.1. DynamoDBのテーブル作成<a class="headerlink" href="#dynamodb" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>センサーデータを保存するDynamoDBのテーブルを作成します。サービスメニューから&#8221;DynamoDB&#8221;をクリックし、DynamoDBの設定画面を開きます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
-</div>
-<p>[Create Tables]をクリックします。</p>
-<img alt="_images/5-create-dynamodb-table-1.png" src="_images/5-create-dynamodb-table-1.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Create Table&#8221;の画面で以下の設定を入力し、[Continue]をクリックします。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">設定項目</th>
-<th class="head">値</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>テーブル名</td>
-<td>awsiot-handson-rawdata</td>
-</tr>
-<tr class="row-odd"><td>プライマリキータイプ</td>
-<td>Hash and Range</td>
-</tr>
-<tr class="row-even"><td>ハッシュキー属性値</td>
-<td>key (String)</td>
-</tr>
-<tr class="row-odd"><td>レンジキー属性値</td>
-<td>timestamp (String)</td>
-</tr>
-</tbody>
-</table>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<img alt="_images/5-create-dynamodb-table-2.png" src="_images/5-create-dynamodb-table-2.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Add Indexes (Optional)&#8221;の画面でそのまま[Continue]をクリック。</p>
-<img alt="_images/5-create-dynamodb-table-3.png" src="_images/5-create-dynamodb-table-3.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Provisioned Throughput Capacity&#8221;の画面でそのまま[Continue]をクリック。</p>
-<img alt="_images/5-create-dynamodb-table-4.png" src="_images/5-create-dynamodb-table-4.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Use Basic Alarms&#8221;のチェックを外し、[Continue]をクリック。</p>
-<img alt="_images/5-create-dynamodb-table-5.png" src="_images/5-create-dynamodb-table-5.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>内容を確認し、[Create]をクリック。</p>
-<img alt="_images/5-create-dynamodb-table-6.png" src="_images/5-create-dynamodb-table-6.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>リスト中に作成したテーブルが&#8221;CREATING&#8221;のステータスで表示されます。テーブルの作成までには少々時間がかかるため、次の手順に進んでください。</p>
-<img alt="_images/5-create-dynamodb-table-7.png" src="_images/5-create-dynamodb-table-7.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 </div>
 <div class="section" id="aws-iot">
-<h2>5.2. AWS IoT ルールの作成<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>5.1. AWS IoT ルールの作成<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>&#8220;Resources&#8221;の[Create a resource]をクリックします。</p>
 <img alt="_images/5-create-rule-1.png" src="_images/5-create-rule-1.png" />
 <div class="line-block">
@@ -235,10 +165,10 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 <img alt="_images/5-create-rule-8.png" src="_images/5-create-rule-8.png" />
 </div>
 <div class="section" id="id4">
-<h2>5.3. プログラムの実行<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>5.2. プログラムの実行<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>照度センサーから照度データを取得し、AWS IoTのメッセージブローカーへ送信するためのプログラムを実行します。サンプルプログラム内のawsiot-handson-fundamentals配下のsensorに移動し、プログラムを実行します。</p>
 <div class="highlight-python"><div class="highlight"><pre>root@edison:~# cd awsiot-handson-fundamentals/sensor
-root@edison:~/awsiot-handson-fundamentals/sensor# node main.js
+root@edison:~# awsiot-handson-fundamentals/sensor# node main.js
 
 Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:37.305Z&quot;,&quot;value&quot;:268}
 Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:38.365Z&quot;,&quot;value&quot;:268}
@@ -263,10 +193,9 @@ Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:41.535Z&quot;,&quot;value
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">5. センサーデータのアップロード</a><ul>
-<li><a class="reference internal" href="#dynamodb">5.1. DynamoDBのテーブル作成</a></li>
-<li><a class="reference internal" href="#aws-iot">5.2. AWS IoT ルールの作成</a></li>
-<li><a class="reference internal" href="#id4">5.3. プログラムの実行</a></li>
+<li><a class="reference internal" href="#">5. センサーデータの送信</a><ul>
+<li><a class="reference internal" href="#aws-iot">5.1. AWS IoT ルールの作成</a></li>
+<li><a class="reference internal" href="#id4">5.2. プログラムの実行</a></li>
 </ul>
 </li>
 </ul>
