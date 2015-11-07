@@ -1,31 +1,90 @@
-==================
- ハンズオン終了後
-==================
+===================================
+その他の設定（オプション）
+===================================
 
-ハンズオン終了後には以下の設定を削除してください。
 
-AWS IoTのリソース削除
+CloudWatch Logsの設定
 =====================
 
-AWS IoTの証明書、ポリシー、デバイスを削除するためには、削除前にアタッチされているリソースをデタッチする必要があります。（ルールは他のリソースとの関連性はありません）
+AWS IoTのログはCloudWatch Logsで取得可能です。
+詳細な手順はこちらに掲載されています。
 
-- マネージメントコンソールのサービス一覧から[AWS IoT]をクリックします。
-- リソース一覧から削除したい証明書を選択します。
-- 右の詳細画面より、関連付けられているデバイスおよびポリシーを選択し、[Detach]をクリックします。
+http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html
 
-.. image:: images/7-detach-1.png
+まず、メニュー画面から"Identity & Access Management"をクリックし、IAMの設定画面を表示します。画面左のメニューから"Roles"をクリックし、[Create New Role]をクリックします。
 
-|
-
-- リソース一覧から削除したいリソースを選択し、"Actions"のメニューから[Revoke]をクリックします。
+.. image:: images/7-logs-1.png
 
 |
 
-DynamoDBのテーブル削除
-======================
+"Role Name"にロール名を入力し、[Next Step]をクリックします。
 
-- マネージメントコンソールのサービス一覧から[DynamoDB]をクリックします。
-- リストから"awsiot-handson-rawdata"のテーブルを選択し、メニューから[Delete Table]をクリックします。
+.. image:: images/7-logs-2.png
 
-.. image:: images/7-delete-dynamodb-table-1.png
+|
 
+"Select Role Type"で"AWS IoT"の[Select]をクリックします。
+
+.. image:: images/7-logs-3.png
+
+|
+
+"Attach Policy"で"AWSIoTLogging"のビルトインポリシーにチェックを入れ、[Next Step]をクリックします。
+
+.. image:: images/7-logs-4.png
+
+|
+
+内容を確認します。次の手順のコマンドラインでARNが必要になるため、"Role ARN"の文字列をコピーしておきます。問題なければ[Create Role]をクリックしてください。
+
+.. image:: images/7-logs-5.png
+
+|
+
+以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。
+
+::
+   
+   aws iot set-logging-options --logging-options-payload roleArn=”arn:aws:iam::<your-aws-account-num>:role/IoTLoggingRole”,logLevel=”INFO”
+
+
+証明書の作成
+============
+
+本ハンズオンではあらかじめプライベートキーとCSR(Certificate Signing Request)を作成し、そちらを元に証明書を取得しています。プライベート鍵とCSRを作成する手順は以下のとおりです。
+
+以下のopensslコマンドでプライベートキーを作成します。
+
+::
+   
+   $ openssl genrsa -out privatekey.pem 2048
+   Generating RSA private key, 2048 bit long modulus
+   ................................................................................+++
+   ..........+++e is 65537 (0x10001)
+
+次に、作成したプライベートキーを元にCSRを作成します。
+
+::
+   
+   $ openssl req -new -key privatekey.pem -out cert.csr
+   You are about to be asked to enter information that will be incorporated
+   into your certificate request.
+   What you are about to enter is what is called a Distinguished Name or a DN.
+   There are quite a few fields but you can leave some blank
+   For some fields there will be a default value,
+   If you enter '.', the field will be left blank.
+   -----
+   Country Name (2 letter code) [AU]:JP
+   State or Province Name (full name) [Some-State]:Tokyo
+   Locality Name (eg, city) []:Meguro
+   Organization Name (eg, company) [Internet Widgits Pty Ltd]:Amazon Web Services Japan K.K.
+   Organizational Unit Name (eg, section) []:
+   Common Name (e.g. server FQDN or YOUR name) []:
+   Email Address []:
+
+   Please enter the following 'extra' attributes
+   to be sent with your certificate request
+   A challenge password []:
+   An optional company name []:
+
+   

@@ -6,16 +6,15 @@
 var m      = require('mraa');
 var lcd    = require('jsupm_i2clcd');
 var upmled = require('jsupm_grove');
-var awsIot = require('aws-iot-device-sdk');                                                                                                   
+var awsIot = require('aws-iot-device-sdk');
 
 // Define paramerters for Shadow
 var thingShadows = awsIot.thingShadow({
-    keyPath: '/home/root/.node_app_slot/certs/privatekey.pem',
-    certPath: '/home/root/.node_app_slot/certs/cert.pem',
-    caPath: '/home/root/.node_app_slot/certs/rootca.crt',
+    keyPath: '../certs/privatekey.pem',
+    certPath: '../certs/cert.pem',
+    caPath: '../certs/rootca.crt',
     clientId: 'edison_shadow_client',
-    //region: 'ap-northeast-1'
-    region: 'us-east-1'
+    region: 'ap-northeast-1'
 });
 
 // Initilize devices

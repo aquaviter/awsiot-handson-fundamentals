@@ -1,32 +1,31 @@
-==========================
-AWS IoT Device SDK解説
-==========================
+==================
+ ハンズオン終了後
+==================
 
-本ハンズオンで利用したサンプルコードを元に、AWS IoT Device SDKの解説をします。
+ハンズオン終了後には以下の設定を削除してください。
 
-シナリオ1の解説
-===============
+AWS IoTのリソース削除
+=====================
 
-シナリオ1ではTopic(edison/illuminance)向けに照度センサーのデータをMQTTを利用してPublishします。
+AWS IoTの証明書、ポリシー、デバイスを削除するためには、削除前にアタッチされているリソースをデタッチする必要があります。（ルールは他のリソースとの関連性はありません）
 
+- マネージメントコンソールのサービス一覧から[AWS IoT]をクリックします。
+- リソース一覧から削除したい証明書を選択します。
+- 右の詳細画面より、関連付けられているデバイスおよびポリシーを選択し、[Detach]をクリックします。
 
+.. image:: images/8-detach-1.png
 
-シナリオ2の解説
-=============================
+|
 
-シナリオ2ではShadowのdeltaトピックに対しSubscribeおよびupdateトピックに対しPublishを行っています。
+- リソース一覧から削除したいリソースを選択し、"Actions"のメニューから[Revoke]をクリックします。
 
-まず、証明書のパスを指定し、プライベート鍵、証明書、ルート証明書のパスを指定します。
+|
 
-.. code-block:: javascript
-  :linenos:   
+DynamoDBのテーブル削除
+======================
 
-     var thingShadows = awsIot.thingShadow({
-       keyPath: '/home/root/.node_app_slot/certs/privatekey.pem',
-       certPath: '/home/root/.node_app_slot/certs/cert.pem',
-       caPath: '/home/root/.node_app_slot/certs/rootca.crt',
-       clientId: 'edison_shadow_client',
-       region: 'ap-northeast-1'
-    });
+- マネージメントコンソールのサービス一覧から[DynamoDB]をクリックします。
+- リストから"awsiot-handson-rawdata"のテーブルを選択し、メニューから[Delete Table]をクリックします。
 
-    
+.. image:: images/8-delete-dynamodb-table-1.png
+

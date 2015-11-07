@@ -1,0 +1,62 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Resources" : {
+      "AWSIoTDeviceUser" : {
+          "Type" : "AWS::IAM::User",
+          "Properties" : {
+           }
+      },
+      "AWSIoTCreateCertPolicy" : {
+          "Type" : "AWS::IAM::Policy",
+          "Properties" : {
+              "PolicyName" : "AWSIoTCreateCertPolicy",
+              "PolicyDocument" : {
+                  "Statement": [{
+                      "Effect"   : "Allow",
+                      "Action"   : "iot:CreateCertificateFromCsr",
+                      "Resource" : "*"
+                  }]
+              },
+              "Users" : [ { "Ref" : "AWSIoTDeviceUser" } ]
+          }
+      },
+      "IAMUserKey" : {
+      "Type" : "AWS::IAM::AccessKey",
+          "Properties" : {
+              "UserName" : { "Ref": "AWSIoTDeviceUser" }
+          }
+      },
+      "AWSIoTHandsonRawdataTable" : {
+          "Type" : "AWS::DynamoDB::Table",
+          "Properties" : {
+              "KeySchema" : {
+                  "HashKeyElement" : {
+                      "AttributeName" : "key",
+                      "AttributeType" : "S",
+                      "KeyType" : "HASH"
+                  },
+                  "RangeKeyElement" : {
+                      "AttributeName" : "timestamp",
+                      "AttributeType" : "S",
+                      "KeyType" : "RANGE"
+                  }
+              },
+              "ProvisionedThroughput" : {
+                  "ReadCapacityUnits" : "1",
+                  "WriteCapacityUnits" : "1"
+              },
+              "TableName" : "awsiot-handson-rawdata"
+          }
+      }
+  },
+  "Outputs" : {
+      "AccessKey" : {
+          "Value" : { "Ref" : "IAMUserKey" },
+          "Description" : "AWSAccessKeyId of new user"
+      },
+      "SecretKey" : {
+          "Value" : { "Fn::GetAtt" : ["IAMUserKey", "SecretAccessKey"]},
+          "Description" : "AWSSecretKey of new user"
+      }
+  }
+}

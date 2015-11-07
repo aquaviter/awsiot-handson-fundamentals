@@ -1,50 +1,40 @@
-===================================
-その他の設定（オプション）
-===================================
+===================
+ LEDのリモート制御
+===================
+
+AWS CLIを実行し、Intel Edisonに接続されたLEDのON/OFFを行います。AWS IoTのShadowを利用してブラウザからEdisonのステータスの変更リクエストを送信し、Edisonは変更通知を元にLEDをOFF/ONします。また、完了後は最新のステータスをShadowにアップデートします。
+
+.. image:: images/senario2.png
 
 
-CloudWatch Logsの設定
-=====================
 
-AWS IoTのログはCloudWatch Logsで取得可能です。
-詳細な手順はこちらに掲載されています。
+プログラムの実行
+================
 
-http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html
+Edison上で以下のプログラムを実行します。
 
-まず、メニュー画面から"Identity & Access Management"をクリックし、IAMの設定画面を表示します。画面左のメニューから"Roles"をクリックし、[Create New Role]をクリックします。
+.. code:: shell
+  cd awsiot-handson-fundamentals/led
+  node main.js
 
-.. image:: images/6-logs-1.png
+マネージメントコンソールのAWS IoTを開き、リソースの一覧から"edison"を選択します。
 
-|
-
-"Role Name"にロール名を入力し、[Next Step]をクリックします。
-
-.. image:: images/6-logs-2.png
-
-|
-
-"Select Role Type"で"AWS IoT"の[Select]をクリックします。
-
-.. image:: images/6-logs-3.png
-
-|
-
-"Attach Policy"で"AWSIoTLogging"のビルトインポリシーにチェックを入れ、[Next Step]をクリックします。
-
-.. image:: images/6-logs-4.png
-
-|
-
-内容を確認します。次の手順のコマンドラインでARNが必要になるため、"Role ARN"の文字列をコピーしておきます。問題なければ[Create Role]をクリックしてください。
-
-.. image:: images/6-logs-5.png
-
-|
-
-以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。
+右の詳細画面から"Update State"をクリックし、"State Detail"の画面に以下のJSONを入力してください。入力が終わったら"Update State"をクリックします。クリック後、EdisonのLEDが点灯することを確認してください。
 
 ::
    
-   aws iot set-logging-options --logging-options-payload roleArn=”arn:aws:iam::<your-aws-account-num>:role/IoTLoggingRole”,logLevel=”INFO”
+   {
+     "reported": {
+       "led": "off"
+     },
+     "desired": {
+       "led": "on"
+     }
+   }
 
+|
+
+.. image:: images/6-led-1.png
+
+"desired"内にある"led"アイテムの値をoff/onのように記述を変更することでLEDの消灯/点灯を行なうことができます。
 

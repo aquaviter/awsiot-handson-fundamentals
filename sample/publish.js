@@ -5,10 +5,10 @@ var topic = 'edison/illuminance';
 
 // Define paramerters to publish a message
 var device = awsIot.device({
-   keyPath: '/Users/hideyy/dev/awsiot-sample/awsCerts/privkey.pem',
-  certPath: '/Users/hideyy/dev/awsiot-sample/awsCerts/cert.pem',
-    caPath: '/Users/hideyy/dev/awsiot-sample/awsCerts/aws-iot-rootCA.crt',
-  clientId: 'edison_pub',
+   keyPath: '../certs/privkey.pem',
+  certPath: '../certs/cert.pem',
+    caPath: '../certs/rootca.crt',
+  clientId: 'edison_sample_pub',
     region: 'ap-northeast-1'
 });
 

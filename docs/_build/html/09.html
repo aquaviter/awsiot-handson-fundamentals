@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>9. AWS IoT Device SDK解説 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
+    <link rel="prev" title="8. ハンズオン終了後" href="08.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="08.html" title="8. ハンズオン終了後"
+             accesskey="P">前へ</a> |</li>
+        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="aws-iot-device-sdk">
+<h1>9. AWS IoT Device SDK解説<a class="headerlink" href="#aws-iot-device-sdk" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>本ハンズオンで利用したサンプルコードを元に、AWS IoT Device SDKの解説をします。</p>
+<div class="section" id="id1">
+<h2>9.1. シナリオ1の解説<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>シナリオ1ではTopic(edison/illuminance)向けに照度センサーのデータをMQTTを利用してPublishします。</p>
+</div>
+<div class="section" id="id2">
+<h2>9.2. シナリオ2の解説<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>シナリオ2ではShadowのdeltaトピックに対しSubscribeおよびupdateトピックに対しPublishを行っています。</p>
+<p>まず、証明書のパスを指定し、プライベート鍵、証明書、ルート証明書のパスを指定します。</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre>   <span class="kd">var</span> <span class="nx">thingShadows</span> <span class="o">=</span> <span class="nx">awsIot</span><span class="p">.</span><span class="nx">thingShadow</span><span class="p">({</span>
+     <span class="nx">keyPath</span><span class="o">:</span> <span class="s1">&#39;/home/root/.node_app_slot/certs/privatekey.pem&#39;</span><span class="p">,</span>
+     <span class="nx">certPath</span><span class="o">:</span> <span class="s1">&#39;/home/root/.node_app_slot/certs/cert.pem&#39;</span><span class="p">,</span>
+     <span class="nx">caPath</span><span class="o">:</span> <span class="s1">&#39;/home/root/.node_app_slot/certs/rootca.crt&#39;</span><span class="p">,</span>
+     <span class="nx">clientId</span><span class="o">:</span> <span class="s1">&#39;edison_shadow_client&#39;</span><span class="p">,</span>
+     <span class="nx">region</span><span class="o">:</span> <span class="s1">&#39;ap-northeast-1&#39;</span>
+  <span class="p">});</span>
+</pre></div>
+</td></tr></table></div>
+<p>メッセージブローカに接続します。</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre>  <span class="nx">thingShadows</span>
+   <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;connected to awsiot.&#39;</span><span class="p">);</span>
+     <span class="nx">thingShadows</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;edison&#39;</span><span class="p">);</span>
+     <span class="nx">clientTokenUpdate</span> <span class="o">=</span> <span class="nx">thingShadows</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s1">&#39;edison&#39;</span><span class="p">,</span> <span class="nx">defaultState</span><span class="p">);</span>
+   <span class="p">});</span>
+</pre></div>
+</td></tr></table></div>
+<p>ステータスを監視します。</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre>   <span class="nx">thingShadows</span>
+   <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">thingName</span><span class="p">,</span> <span class="nx">stat</span><span class="p">,</span> <span class="nx">clientToken</span><span class="p">,</span> <span class="nx">stateObject</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;received &#39;</span> <span class="o">+</span> <span class="nx">stat</span> <span class="o">+</span> <span class="s1">&#39; on &#39;</span> <span class="o">+</span> <span class="nx">thingName</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">stateObject</span><span class="p">));</span>
+   <span class="p">});</span>
+</pre></div>
+</td></tr></table></div>
+<p>アプリケーションからdesiredステータスのアップデートがあった場合、deltaのトピックにメッセージがpublishされます。deltaをsubscribeすることで変更をリアルタイムに受信します。</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>   <span class="nx">thingShadows</span>
+   <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;delta&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">thingName</span><span class="p">,</span> <span class="nx">stateObject</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;received delta &#39;</span><span class="o">+</span><span class="s1">&#39; on &#39;</span> <span class="o">+</span> <span class="nx">thingName</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">stateObject</span><span class="p">));</span>
+     <span class="nx">updatedState</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;reported&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;led&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">}}};</span>
+   <span class="p">});</span>
+</pre></div>
+</td></tr></table></div>
+<p>ステータスをチェックし、デバイス内でそれぞれのステータスに応じた処理を実行します。</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre>   <span class="k">if</span> <span class="p">(</span><span class="nx">stateObject</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">led</span> <span class="o">==</span> <span class="s1">&#39;on&#39;</span><span class="p">)</span> <span class="p">{</span>
+
+   <span class="c1">//ONの処理(LED点灯)</span>
+
+   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+   <span class="c1">//OFFの処理(LED消灯)</span>
+
+   <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">9. AWS IoT Device SDK解説</a><ul>
+<li><a class="reference internal" href="#id1">9.1. シナリオ1の解説</a></li>
+<li><a class="reference internal" href="#id2">9.2. シナリオ2の解説</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="08.html"
+                        title="前の章へ">8. ハンズオン終了後</a></p>
+  <h3>このページ</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/09.txt"
+           rel="nofollow">ソースコードを表示</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>クイック検索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="08.html" title="8. ハンズオン終了後"
+             >前へ</a> |</li>
+        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, aquaviter.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
+    </div>
+  </body>
+</html>

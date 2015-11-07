@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7. ハンズオン終了後 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>7. その他の設定（オプション） &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,7 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
-    <link rel="prev" title="6. その他の設定（オプション）" href="06.html" /> 
+    <link rel="next" title="8. ハンズオン終了後" href="08.html" />
+    <link rel="prev" title="6. LEDのリモート制御" href="06.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,7 +36,10 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="06.html" title="6. その他の設定（オプション）"
+          <a href="08.html" title="8. ハンズオン終了後"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="06.html" title="6. LEDのリモート制御"
              accesskey="P">前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
@@ -47,34 +51,75 @@
           <div class="body">
             
   <div class="section" id="id1">
-<h1>7. ハンズオン終了後<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>ハンズオン終了後には以下の設定を削除してください。</p>
-<div class="section" id="aws-iot">
-<h2>7.1. AWS IoTのリソース削除<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>AWS IoTの証明書、ポリシー、デバイスを削除するためには、削除前にアタッチされているリソースをデタッチする必要があります。（ルールは他のリソースとの関連性はありません）</p>
-<ul class="simple">
-<li>マネージメントコンソールのサービス一覧から[AWS IoT]をクリックします。</li>
-<li>リソース一覧から削除したい証明書を選択します。</li>
-<li>右の詳細画面より、関連付けられているデバイスおよびポリシーを選択し、[Detach]をクリックします。</li>
-</ul>
-<img alt="_images/7-detach-1.png" src="_images/7-detach-1.png" />
+<h1>7. その他の設定（オプション）<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="cloudwatch-logs">
+<h2>7.1. CloudWatch Logsの設定<a class="headerlink" href="#cloudwatch-logs" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>AWS IoTのログはCloudWatch Logsで取得可能です。
+詳細な手順はこちらに掲載されています。</p>
+<p><a class="reference external" href="http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html">http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html</a></p>
+<p>まず、メニュー画面から&#8221;Identity &amp; Access Management&#8221;をクリックし、IAMの設定画面を表示します。画面左のメニューから&#8221;Roles&#8221;をクリックし、[Create New Role]をクリックします。</p>
+<img alt="_images/7-logs-1.png" src="_images/7-logs-1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<ul class="simple">
-<li>リソース一覧から削除したいリソースを選択し、&#8221;Actions&#8221;のメニューから[Revoke]をクリックします。</li>
-</ul>
+<p>&#8220;Role Name&#8221;にロール名を入力し、[Next Step]をクリックします。</p>
+<img alt="_images/7-logs-2.png" src="_images/7-logs-2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p>&#8220;Select Role Type&#8221;で&#8221;AWS IoT&#8221;の[Select]をクリックします。</p>
+<img alt="_images/7-logs-3.png" src="_images/7-logs-3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
-<div class="section" id="dynamodb">
-<h2>7.2. DynamoDBのテーブル削除<a class="headerlink" href="#dynamodb" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<ul class="simple">
-<li>マネージメントコンソールのサービス一覧から[DynamoDB]をクリックします。</li>
-<li>リストから&#8221;awsiot-handson-rawdata&#8221;のテーブルを選択し、メニューから[Delete Table]をクリックします。</li>
-</ul>
-<img alt="_images/7-delete-dynamodb-table-1.png" src="_images/7-delete-dynamodb-table-1.png" />
+<p>&#8220;Attach Policy&#8221;で&#8221;AWSIoTLogging&#8221;のビルトインポリシーにチェックを入れ、[Next Step]をクリックします。</p>
+<img alt="_images/7-logs-4.png" src="_images/7-logs-4.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>内容を確認します。次の手順のコマンドラインでARNが必要になるため、&#8221;Role ARN&#8221;の文字列をコピーしておきます。問題なければ[Create Role]をクリックしてください。</p>
+<img alt="_images/7-logs-5.png" src="_images/7-logs-5.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。</p>
+<div class="highlight-python"><div class="highlight"><pre>aws iot set-logging-options --logging-options-payload roleArn=”arn:aws:iam::&lt;your-aws-account-num&gt;:role/IoTLoggingRole”,logLevel=”INFO”
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>7.2. 証明書の作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>本ハンズオンではあらかじめプライベートキーとCSR(Certificate Signing Request)を作成し、そちらを元に証明書を取得しています。プライベート鍵とCSRを作成する手順は以下のとおりです。</p>
+<p>以下のopensslコマンドでプライベートキーを作成します。</p>
+<div class="highlight-python"><div class="highlight"><pre>$ openssl genrsa -out privatekey.pem 2048
+Generating RSA private key, 2048 bit long modulus
+................................................................................+++
+..........+++e is 65537 (0x10001)
+</pre></div>
+</div>
+<p>次に、作成したプライベートキーを元にCSRを作成します。</p>
+<div class="highlight-python"><div class="highlight"><pre>$ openssl req -new -key privatekey.pem -out cert.csr
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter &#39;.&#39;, the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:JP
+State or Province Name (full name) [Some-State]:Tokyo
+Locality Name (eg, city) []:Meguro
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Amazon Web Services Japan K.K.
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:
+Email Address []:
+
+Please enter the following &#39;extra&#39; attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -86,16 +131,19 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">7. ハンズオン終了後</a><ul>
-<li><a class="reference internal" href="#aws-iot">7.1. AWS IoTのリソース削除</a></li>
-<li><a class="reference internal" href="#dynamodb">7.2. DynamoDBのテーブル削除</a></li>
+<li><a class="reference internal" href="#">7. その他の設定（オプション）</a><ul>
+<li><a class="reference internal" href="#cloudwatch-logs">7.1. CloudWatch Logsの設定</a></li>
+<li><a class="reference internal" href="#id2">7.2. 証明書の作成</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="06.html"
-                        title="前の章へ">6. その他の設定（オプション）</a></p>
+                        title="前の章へ">6. LEDのリモート制御</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="08.html"
+                        title="次の章へ">8. ハンズオン終了後</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/07.txt"
@@ -125,7 +173,10 @@
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="06.html" title="6. その他の設定（オプション）"
+          <a href="08.html" title="8. ハンズオン終了後"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="06.html" title="6. LEDのリモート制御"
              >前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>

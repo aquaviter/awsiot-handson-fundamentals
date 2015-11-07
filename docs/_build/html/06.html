@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>6. その他の設定（オプション） &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>6. LEDのリモート制御 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
-    <link rel="next" title="7. ハンズオン終了後" href="07.html" />
-    <link rel="prev" title="5. LEDのリモート制御" href="05.html" /> 
+    <link rel="next" title="7. その他の設定（オプション）" href="07.html" />
+    <link rel="prev" title="5. センサーデータのアップロード" href="05.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="07.html" title="7. ハンズオン終了後"
+          <a href="07.html" title="7. その他の設定（オプション）"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="05.html" title="5. LEDのリモート制御"
+          <a href="05.html" title="5. センサーデータのアップロード"
              accesskey="P">前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
@@ -50,42 +50,30 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="id1">
-<h1>6. その他の設定（オプション）<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<div class="section" id="cloudwatch-logs">
-<h2>6.1. CloudWatch Logsの設定<a class="headerlink" href="#cloudwatch-logs" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>AWS IoTのログはCloudWatch Logsで取得可能です。
-詳細な手順はこちらに掲載されています。</p>
-<p><a class="reference external" href="http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html">http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html</a></p>
-<p>まず、メニュー画面から&#8221;Identity &amp; Access Management&#8221;をクリックし、IAMの設定画面を表示します。画面左のメニューから&#8221;Roles&#8221;をクリックし、[Create New Role]をクリックします。</p>
-<img alt="_images/6-logs-1.png" src="_images/6-logs-1.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Role Name&#8221;にロール名を入力し、[Next Step]をクリックします。</p>
-<img alt="_images/6-logs-2.png" src="_images/6-logs-2.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Select Role Type&#8221;で&#8221;AWS IoT&#8221;の[Select]をクリックします。</p>
-<img alt="_images/6-logs-3.png" src="_images/6-logs-3.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Attach Policy&#8221;で&#8221;AWSIoTLogging&#8221;のビルトインポリシーにチェックを入れ、[Next Step]をクリックします。</p>
-<img alt="_images/6-logs-4.png" src="_images/6-logs-4.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>内容を確認します。次の手順のコマンドラインでARNが必要になるため、&#8221;Role ARN&#8221;の文字列をコピーしておきます。問題なければ[Create Role]をクリックしてください。</p>
-<img alt="_images/6-logs-5.png" src="_images/6-logs-5.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。</p>
-<div class="highlight-python"><div class="highlight"><pre>aws iot set-logging-options --logging-options-payload roleArn=”arn:aws:iam::&lt;your-aws-account-num&gt;:role/IoTLoggingRole”,logLevel=”INFO”
+  <div class="section" id="led">
+<h1>6. LEDのリモート制御<a class="headerlink" href="#led" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>AWS CLIを実行し、Intel Edisonに接続されたLEDのON/OFFを行います。AWS IoTのShadowを利用してブラウザからEdisonのステータスの変更リクエストを送信し、Edisonは変更通知を元にLEDをOFF/ONします。また、完了後は最新のステータスをShadowにアップデートします。</p>
+<img alt="_images/senario2.png" src="_images/senario2.png" />
+<div class="section" id="id1">
+<h2>6.1. プログラムの実行<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Edison上で以下のプログラムを実行します。</p>
+<p>マネージメントコンソールのAWS IoTを開き、リソースの一覧から&#8221;edison&#8221;を選択します。</p>
+<p>右の詳細画面から&#8221;Update State&#8221;をクリックし、&#8221;State Detail&#8221;の画面に以下のJSONを入力してください。入力が終わったら&#8221;Update State&#8221;をクリックします。クリック後、EdisonのLEDが点灯することを確認してください。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;reported&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;led&quot;</span><span class="p">:</span> <span class="s">&quot;off&quot;</span>
+  <span class="p">},</span>
+  <span class="s">&quot;desired&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;led&quot;</span><span class="p">:</span> <span class="s">&quot;on&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/6-led-1.png" src="_images/6-led-1.png" />
+<p>&#8220;desired&#8221;内にある&#8221;led&#8221;アイテムの値をoff/onのように記述を変更することでLEDの消灯/点灯を行なうことができます。</p>
 </div>
 </div>
 
@@ -97,18 +85,18 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">6. その他の設定（オプション）</a><ul>
-<li><a class="reference internal" href="#cloudwatch-logs">6.1. CloudWatch Logsの設定</a></li>
+<li><a class="reference internal" href="#">6. LEDのリモート制御</a><ul>
+<li><a class="reference internal" href="#id1">6.1. プログラムの実行</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="05.html"
-                        title="前の章へ">5. LEDのリモート制御</a></p>
+                        title="前の章へ">5. センサーデータのアップロード</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="07.html"
-                        title="次の章へ">7. ハンズオン終了後</a></p>
+                        title="次の章へ">7. その他の設定（オプション）</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/06.txt"
@@ -138,10 +126,10 @@
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="07.html" title="7. ハンズオン終了後"
+          <a href="07.html" title="7. その他の設定（オプション）"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="05.html" title="5. LEDのリモート制御"
+          <a href="05.html" title="5. センサーデータのアップロード"
              >前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>

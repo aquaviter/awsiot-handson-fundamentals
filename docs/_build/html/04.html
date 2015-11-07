@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4. AWSサービスとの連携 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>4. AWS IoT基本設定 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
-    <link rel="next" title="5. LEDのリモート制御" href="05.html" />
-    <link rel="prev" title="3. AWS IoT基本設定" href="03.html" /> 
+    <link rel="next" title="5. センサーデータのアップロード" href="05.html" />
+    <link rel="prev" title="3. ハンズオン準備" href="03.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="05.html" title="5. LEDのリモート制御"
+          <a href="05.html" title="5. センサーデータのアップロード"
              accesskey="N">次へ</a> |</li>
         <li class="right" >
-          <a href="03.html" title="3. AWS IoT基本設定"
+          <a href="03.html" title="3. ハンズオン準備"
              accesskey="P">前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
@@ -50,206 +50,112 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="aws">
-<h1>4. AWSサービスとの連携<a class="headerlink" href="#aws" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Intel Edisonに接続された照度センサーのデータをAWSの各サービスにストアします。
-EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTでルールに基づきDynamoDBへ保存します。</p>
-<img alt="_images/senario1.png" src="_images/senario1.png" />
+  <div class="section" id="aws-iot">
+<h1>4. AWS IoT基本設定<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>4.1. デバイスの作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>AWSマネージメントコンソールへログインし、画面右上のメニューから東京リージョンを選択します。
+サービス一覧から&#8221;AWS IoT&#8221;をクリックします。</p>
+<img alt="_images/4-servicemenu.png" src="_images/4-servicemenu.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>センサーデータは以下のJSONフォーマットとします。</p>
-<div class="highlight-python"><div class="highlight"><pre>{
-  &quot;timestamp&quot;: &quot;2015-10-24T14:16:37.305Z&quot;, ←ISO8601形式
-  &quot;value&quot;: &quot;300&quot;                           ←アナログ値
-}
-</pre></div>
-</div>
-<div class="section" id="dynamodb">
-<h2>4.1. DynamoDBのテーブル作成<a class="headerlink" href="#dynamodb" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>センサーデータを保存するDynamoDBのテーブルを作成します。サービスメニューから&#8221;DynamoDB&#8221;をクリックし、DynamoDBの設定画面を開きます。</p>
+<p>“Get Startedが表示される場合はそちらをクリックします。</p>
+<img alt="_images/4-getstart.png" src="_images/4-getstart.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>[Create Tables]をクリックします。</p>
-<img alt="_images/4-create-dynamodb-table-1.png" src="_images/4-create-dynamodb-table-1.png" />
+<p>デバイス(Thing)を作成します。メニューの”Create a thing”をクリックします。Nameに”edison”と入力し、[Create]をクリックします。</p>
+<img alt="_images/4-create-thing.png" src="_images/4-create-thing.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>&#8220;Create Table&#8221;の画面で以下の設定を入力し、[Continue]をクリックします。</p>
+<p>リソースの一覧で作成したデバイスが表示されます。</p>
+<img alt="_images/4-thing.png" src="_images/4-thing.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+</div>
+<div class="section" id="certificate">
+<h2>4.2. 証明書(Certificate)の作成<a class="headerlink" href="#certificate" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>メニューの”Create a certificate”をクリックし、[1-Click Certificate Create]をクリックします。</p>
+<img alt="_images/4-create-cert.png" src="_images/4-create-cert.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Download ~をクリックして、Public Key、Private Key、Certificateをそれぞれダウンロードします。</p>
+<img alt="_images/4-download-cert.png" src="_images/4-download-cert.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>画面下の作成した証明書をクリックし、画面右のActionsリストから[Activate]を選びます。</p>
+<img alt="_images/4-activate-cert.png" src="_images/4-activate-cert.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>”ACTIVE”になったことを確認します 。</p>
+<img alt="_images/4-activated-cert.png" src="_images/4-activated-cert.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>4.3. ポリシーの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>デバイスに対して、AWS IoTの各種操作を許可するためのポリシーを作成します。メニューの”Create a policy”をクリックします。フォームにそれぞれ以下のパラメータを入力し、[Create]をクリックします。</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col width="32%" />
+<col width="68%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">設定項目</th>
-<th class="head">値</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>テーブル名</td>
-<td>awsiot-handson-rawdata</td>
-</tr>
-<tr class="row-odd"><td>プライマリキータイプ</td>
-<td>Hash and Range</td>
-</tr>
-<tr class="row-even"><td>ハッシュキー属性値</td>
-<td>key (String)</td>
-</tr>
-<tr class="row-odd"><td>レンジキー属性値</td>
-<td>timestamp (String)</td>
-</tr>
-</tbody>
-</table>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<img alt="_images/4-create-dynamodb-table-2.png" src="_images/4-create-dynamodb-table-2.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Add Indexes (Optional)&#8221;の画面でそのまま[Continue]をクリック。</p>
-<img alt="_images/4-create-dynamodb-table-3.png" src="_images/4-create-dynamodb-table-3.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Provisioned Throughput Capacity&#8221;の画面でそのまま[Continue]をクリック。</p>
-<img alt="_images/4-create-dynamodb-table-4.png" src="_images/4-create-dynamodb-table-4.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>&#8220;Use Basic Alarms&#8221;のチェックを外し、[Continue]をクリック。</p>
-<img alt="_images/4-create-dynamodb-table-5.png" src="_images/4-create-dynamodb-table-5.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>内容を確認し、[Create]をクリック。</p>
-<img alt="_images/4-create-dynamodb-table-6.png" src="_images/4-create-dynamodb-table-6.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>リスト中に作成したテーブルが&#8221;CREATING&#8221;のステータスで表示されます。テーブルの作成までには少々時間がかかるため、次の手順に進んでください。</p>
-<img alt="_images/4-create-dynamodb-table-7.png" src="_images/4-create-dynamodb-table-7.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</div>
-<div class="section" id="aws-iot">
-<h2>4.2. AWS IoT ルールの作成<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>&#8220;Resources&#8221;の[Create a resource]をクリックします。</p>
-<img alt="_images/4-create-rule-1.png" src="_images/4-create-rule-1.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>[Create a rule]をクリックします。</p>
-<img alt="_images/4-create-rule-2.png" src="_images/4-create-rule-2.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>スクリーンショットの赤枠で囲んだ部分について、以下の項目を入力します。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">設定項目</th>
+<tr class="row-odd"><th class="head">項目</th>
 <th class="head">値</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Name</td>
-<td>SaveToDynamoDB</td>
+<td>awsiot-handson-policy</td>
 </tr>
-<tr class="row-odd"><td>Description</td>
-<td>任意</td>
+<tr class="row-odd"><td>Action</td>
+<td>iot:*</td>
 </tr>
-<tr class="row-even"><td>Attribute</td>
-<td><a href="#id1"><span class="problematic" id="id2">*</span></a>(アスタリスク)</td>
-</tr>
-<tr class="row-odd"><td>Topic Filter</td>
-<td>edison/illuminance</td>
-</tr>
-</tbody>
-</table>
-<img alt="_images/4-create-rule-3.png" src="_images/4-create-rule-3.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>画面をスクロールし、&#8221;Choose an action&#8221;から&#8221;Insert a message into a Database table(DynamoDB)&#8221;を選択します。以下の値を入力します。&#8221;Role Name&#8221;では[Create a new policy]をクリックします。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">設定項目</th>
-<th class="head">値</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Hash Key Value</td>
-<td>${topic(2)}</td>
-</tr>
-<tr class="row-odd"><td>Range Key Value</td>
-<td>${timestamp()}</td>
-</tr>
-<tr class="row-even"><td>Payload  Field</td>
-<td>value</td>
+<tr class="row-even"><td>Resource</td>
+<td><ul class="first last simple">
+<li>(アスタリスク)</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="_images/4-create-rule-4.png" src="_images/4-create-rule-4.png" />
+<img alt="_images/4-create-policy.png" src="_images/4-create-policy.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。以下の画面で[Allow]をクリックします。</p>
-<img alt="_images/4-create-rule-5.png" src="_images/4-create-rule-5.png" />
+<p>作成したポリシーがリソースの一覧に表示されます。</p>
+<img alt="_images/4-policy.png" src="_images/4-policy.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>[Add Action]をクリックします。</p>
-<img alt="_images/4-create-rule-6.png" src="_images/4-create-rule-6.png" />
+<p>先ほど作成した証明書をポリシーに割当てます。リスト中の証明書をクリックし、[Actions]-[Attach a policy]をクリックしてください。</p>
+<img alt="_images/4-attach-policy.png" src="_images/4-attach-policy.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>&#8220;DynamoDB Action&#8221;が追加されたことを確認したら、[Create]をクリックします。</p>
-<img alt="_images/4-create-rule-7.png" src="_images/4-create-rule-7.png" />
+<p>“Confirm”の画面で、フォームにポリシー名”awsiot-handson-policy”を入力し、[Attach]をクリックします。</p>
+<img alt="_images/4-attach-policy-2.png" src="_images/4-attach-policy-2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>一覧に作成したルールが作成されたことを確認します。</p>
-<img alt="_images/4-create-rule-8.png" src="_images/4-create-rule-8.png" />
+<p>次に、デバイスと証明書の関連付けを行います。作成した証明書をリソース一覧の中から選択し、[Actions]-[Attach a thingクリックします。</p>
+<img alt="_images/4-attach-thing.png" src="_images/4-attach-thing.png" />
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
-<div class="section" id="id3">
-<h2>4.3. プログラムの実行<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>照度センサーから照度データを取得し、AWS IoTのメッセージブローカーへ送信するためのプログラムを実行します。サンプルプログラム内のawsiot-handson-fundamentals配下のsensorに移動し、プログラムを実行します。</p>
-<div class="highlight-python"><div class="highlight"><pre>root@edison# cd awsiot-handson-fundamentals/sensor
-root@edison# node main.js
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:37.305Z&quot;,&quot;value&quot;:268}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:38.365Z&quot;,&quot;value&quot;:268}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:39.424Z&quot;,&quot;value&quot;:271}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:40.484Z&quot;,&quot;value&quot;:270}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:41.535Z&quot;,&quot;value&quot;:272}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:42.595Z&quot;,&quot;value&quot;:269}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:43.654Z&quot;,&quot;value&quot;:270}
-</pre></div>
-</div>
-<p>DynamoDBのテーブルを確認し、データが格納されていることを確認してください。テーブル一覧から&#8221;awsiot-handson-rawdata&#8221;をクリックし、テーブルのデータを表示します。</p>
-<img alt="_images/4-dynamodb-1.png" src="_images/4-dynamodb-1.png" />
+<p>&#8220;Thing Name&#8221;にデバイス名: edisonを入力し、[Attach]をクリックします。</p>
+<img alt="_images/4-attach-thing-2.png" src="_images/4-attach-thing-2.png" />
 </div>
 </div>
 
@@ -261,20 +167,20 @@ Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:43.654Z&quot;,&quot;value
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
-<li><a class="reference internal" href="#">4. AWSサービスとの連携</a><ul>
-<li><a class="reference internal" href="#dynamodb">4.1. DynamoDBのテーブル作成</a></li>
-<li><a class="reference internal" href="#aws-iot">4.2. AWS IoT ルールの作成</a></li>
-<li><a class="reference internal" href="#id3">4.3. プログラムの実行</a></li>
+<li><a class="reference internal" href="#">4. AWS IoT基本設定</a><ul>
+<li><a class="reference internal" href="#id1">4.1. デバイスの作成</a></li>
+<li><a class="reference internal" href="#certificate">4.2. 証明書(Certificate)の作成</a></li>
+<li><a class="reference internal" href="#id2">4.3. ポリシーの作成</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="03.html"
-                        title="前の章へ">3. AWS IoT基本設定</a></p>
+                        title="前の章へ">3. ハンズオン準備</a></p>
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="05.html"
-                        title="次の章へ">5. LEDのリモート制御</a></p>
+                        title="次の章へ">5. センサーデータのアップロード</a></p>
   <h3>このページ</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/04.txt"
@@ -304,10 +210,10 @@ Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:43.654Z&quot;,&quot;value
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="05.html" title="5. LEDのリモート制御"
+          <a href="05.html" title="5. センサーデータのアップロード"
              >次へ</a> |</li>
         <li class="right" >
-          <a href="03.html" title="3. AWS IoT基本設定"
+          <a href="03.html" title="3. ハンズオン準備"
              >前へ</a> |</li>
         <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
