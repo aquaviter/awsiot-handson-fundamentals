@@ -53,10 +53,103 @@
   <div class="section" id="id1">
 <h1>3. ハンズオン準備<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>ハンズオンを始めるにあたり、事前の準備設定を行います。</p>
-<div class="section" id="cloudformation">
-<h2>3.1. ハンズオン用CloudFormationのスタック作成<a class="headerlink" href="#cloudformation" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>ハンズオンで利用するIAMユーザ、DynamoDBテーブルを作成を自動化するために、CloudFormationのスタックを作成します。</p>
+<div class="section" id="cloud-formation">
+<h2>3.1. ハンズオン用Cloud Formationのスタック作成<a class="headerlink" href="#cloud-formation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ハンズオンで利用するIAMユーザ、DynamoDBテーブルを作成を自動化するために、Cloud Formationのスタックを作成します。IAMユーザはedisonの証明書を作成するための権限を与えるために作成します。また、DynamoDBテーブルはシナリオ１のセンサーデータの保存用のテーブルとなります。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>マネージメントコンソールのサービス一覧から&#8221;Cloud Formation&#8221;をクリックします。</p>
+<img alt="_images/3-cf-1.png" src="_images/3-cf-1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>&#8220;Choose a template&#8221;から&#8221;Specify an Amazon S3 template URL&#8221;にチェックを入れ、以下のパスを入力し、[Next]をクリックします。</p>
+<p><a class="reference external" href="https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiothandson.template">https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiothandson.template</a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/3-cf-2.png" src="_images/3-cf-2.png" />
+<p>&#8220;Stack Name&#8221;に&#8221;AWSIoTHandsonStack&#8221;と入力し、[Next]をクリックします。</p>
+<img alt="_images/3-cf-3.png" src="_images/3-cf-3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>&#8220;Options&#8221;で何も入力せずに[Next]をクリックします。</p>
+<img alt="_images/3-cf-4.png" src="_images/3-cf-4.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>&#8220;Resource&#8221;の画面を下にスクロールし、&#8221;Capabilities&#8221;で&#8221;I acknowledge that this template...&#8221;にチェックを入れ、[Create]をクリックします。</p>
+<img alt="_images/3-cf-5.png" src="_images/3-cf-5.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Cloud Formationのスタックの一覧に作成したスタックが表示されるのを確認します。Statusは&#8221;CREATE_IN_PROGRESS&#8221;から&#8221;CREATE_COMPLETE&#8221;になるのを確認します。</p>
+<img alt="_images/3-cf-6.png" src="_images/3-cf-6.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/3-cf-7.png" src="_images/3-cf-7.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>画面下の&#8221;Output&#8221;タブをクリックし、AccessKeyとSecretKeyが表示されていることを確認し、こちらの内容をメモ帳などにコピーしてください。</p>
+<img alt="_images/3-cf-8.png" src="_images/3-cf-8.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="edison">
+<h2>3.2. Edison用サンプルコードの準備<a class="headerlink" href="#edison" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ハンズオンで利用するEdison用のサンプルコードのダウンロード、初期設定を行います。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Edison上で以下のコマンドを実行し、サンプルコードのダウンロード、zipファイルの解凍を行います。</p>
+<div class="highlight-python"><div class="highlight"><pre>root@edison:~# wget https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiot-handson-fundamentals.zip
+
+root@edison:~# unzip awsiot-handson-fundamentals.zip
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>証明書を取得するためのスクリプトの設定を行います。解凍したサンプルコードのawsiot-handson-fundamentals/certsディレクトリに移動し、config.jsonの先ほどコピーしたCloud FormationのOutputのAccessKey/SecretKeyを入力します。</p>
+<div class="highlight-python"><div class="highlight"><pre>root@edison:~# cd awsiot-handson-fundamentals/certs
+root@edison:~/awsiot-handson-fundamentals/certs# vi config.json
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>{
+  &quot;accessKeyId&quot;: &quot;&lt;your access key&gt;&quot;,        ←&lt;your access key&gt;にAccessKeyを入力
+  &quot;secretAccessKey&quot;: &quot;&lt;your secret key&gt;&quot;,    ←&lt;your secret key&gt;にSecretKeyを入力
+  &quot;region&quot;: &quot;ap-northeast-1&quot;
+}
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>証明書作成のスクリプトを実行します。certsディレクトリにはすでにプライベートキー(privatekey.pem)とCSR(cert.csr)が存在しており、CSRの内容を元に証明書を作成しています。出力されるcertificateIdの英数字文字列をメモ帳にコピーしてください。次章のAWS IoTの設定の中で証明書を特定するために利用します。</p>
+<div class="highlight-python"><div class="highlight"><pre> root@edison:~/awsiot-handson-fundamentals/certs# node create_cert.js
+ ~
+ { certificateArn: &#39;arn:aws:iot:ap-northeast-1:xxxxxxxxxxxxxx:cert/&lt;英数字文字列&gt;&#39;,
+certificateId: &#39;&lt;英数字文字列&gt;&#39;,
+~
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>証明書ファイル(cert.pem)がcertsディレクトリ内に存在することを確認します。</p>
+<div class="highlight-python"><div class="highlight"><pre>root@edison:~/awsiot-handson-fundamentals/certs# ls
+cert.csr        config.json     node_modules    rootca.crt
+cert.pem        create_cert.js  privatekey.pem
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -69,7 +162,8 @@
   <h3><a href="index.html">目次</a></h3>
   <ul>
 <li><a class="reference internal" href="#">3. ハンズオン準備</a><ul>
-<li><a class="reference internal" href="#cloudformation">3.1. ハンズオン用CloudFormationのスタック作成</a></li>
+<li><a class="reference internal" href="#cloud-formation">3.1. ハンズオン用Cloud Formationのスタック作成</a></li>
+<li><a class="reference internal" href="#edison">3.2. Edison用サンプルコードの準備</a></li>
 </ul>
 </li>
 </ul>

@@ -76,31 +76,8 @@
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="certificate">
-<h2>4.2. 証明書(Certificate)の作成<a class="headerlink" href="#certificate" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>メニューの”Create a certificate”をクリックし、[1-Click Certificate Create]をクリックします。</p>
-<img alt="_images/4-create-cert.png" src="_images/4-create-cert.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Download ~をクリックして、Public Key、Private Key、Certificateをそれぞれダウンロードします。</p>
-<img alt="_images/4-download-cert.png" src="_images/4-download-cert.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>画面下の作成した証明書をクリックし、画面右のActionsリストから[Activate]を選びます。</p>
-<img alt="_images/4-activate-cert.png" src="_images/4-activate-cert.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>”ACTIVE”になったことを確認します 。</p>
-<img alt="_images/4-activated-cert.png" src="_images/4-activated-cert.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</div>
 <div class="section" id="id2">
-<h2>4.3. ポリシーの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>4.2. ポリシーの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>デバイスに対して、AWS IoTの各種操作を許可するためのポリシーを作成します。メニューの”Create a policy”をクリックします。フォームにそれぞれ以下のパラメータを入力し、[Create]をクリックします。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -139,7 +116,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>先ほど作成した証明書をポリシーに割当てます。リスト中の証明書をクリックし、[Actions]-[Attach a policy]をクリックしてください。</p>
+<p>先ほど作成した証明書をポリシーに割当てます。リスト中の証明書をクリックし、[Actions]-[Attach a policy]をクリックしてください。(3章で証明書を作成したときのcertificateIdの証明書をリソースから選択してください。）</p>
 <img alt="_images/4-attach-policy.png" src="_images/4-attach-policy.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -169,8 +146,7 @@
   <ul>
 <li><a class="reference internal" href="#">4. AWS IoT基本設定</a><ul>
 <li><a class="reference internal" href="#id1">4.1. デバイスの作成</a></li>
-<li><a class="reference internal" href="#certificate">4.2. 証明書(Certificate)の作成</a></li>
-<li><a class="reference internal" href="#id2">4.3. ポリシーの作成</a></li>
+<li><a class="reference internal" href="#id2">4.2. ポリシーの作成</a></li>
 </ul>
 </li>
 </ul>

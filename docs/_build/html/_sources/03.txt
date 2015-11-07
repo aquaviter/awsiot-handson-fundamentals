@@ -4,10 +4,115 @@
 
 ハンズオンを始めるにあたり、事前の準備設定を行います。
 
-ハンズオン用CloudFormationのスタック作成
+ハンズオン用Cloud Formationのスタック作成
 ========================================
 
-ハンズオンで利用するIAMユーザ、DynamoDBテーブルを作成を自動化するために、CloudFormationのスタックを作成します。
+ハンズオンで利用するIAMユーザ、DynamoDBテーブルを作成を自動化するために、Cloud Formationのスタックを作成します。IAMユーザはedisonの証明書を作成するための権限を与えるために作成します。また、DynamoDBテーブルはシナリオ１のセンサーデータの保存用のテーブルとなります。
+
+|
 
 マネージメントコンソールのサービス一覧から"Cloud Formation"をクリックします。
 
+.. image:: images/3-cf-1.png
+
+|
+
+"Choose a template"から"Specify an Amazon S3 template URL"にチェックを入れ、以下のパスを入力し、[Next]をクリックします。
+
+https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiothandson.template
+
+|
+
+.. image:: images/3-cf-2.png
+
+"Stack Name"に"AWSIoTHandsonStack"と入力し、[Next]をクリックします。
+
+.. image:: images/3-cf-3.png
+
+|
+
+"Options"で何も入力せずに[Next]をクリックします。
+
+.. image:: images/3-cf-4.png
+
+|
+
+"Resource"の画面を下にスクロールし、"Capabilities"で"I acknowledge that this template..."にチェックを入れ、[Create]をクリックします。
+
+.. image:: images/3-cf-5.png
+
+|
+
+Cloud Formationのスタックの一覧に作成したスタックが表示されるのを確認します。Statusは"CREATE_IN_PROGRESS"から"CREATE_COMPLETE"になるのを確認します。
+
+.. image:: images/3-cf-6.png
+
+|           
+
+.. image:: images/3-cf-7.png
+
+|
+
+画面下の"Output"タブをクリックし、AccessKeyとSecretKeyが表示されていることを確認し、こちらの内容をメモ帳などにコピーしてください。
+
+.. image:: images/3-cf-8.png
+
+|
+
+Edison用サンプルコードの準備
+============================
+
+ハンズオンで利用するEdison用のサンプルコードのダウンロード、初期設定を行います。
+
+|
+
+Edison上で以下のコマンドを実行し、サンプルコードのダウンロード、zipファイルの解凍を行います。
+
+::
+   
+   root@edison:~# wget https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiot-handson-fundamentals.zip
+
+   root@edison:~# unzip awsiot-handson-fundamentals.zip
+
+|
+
+証明書を取得するためのスクリプトの設定を行います。解凍したサンプルコードのawsiot-handson-fundamentals/certsディレクトリに移動し、config.jsonの先ほどコピーしたCloud FormationのOutputのAccessKey/SecretKeyを入力します。
+
+::
+   
+   root@edison:~# cd awsiot-handson-fundamentals/certs
+   root@edison:~/awsiot-handson-fundamentals/certs# vi config.json
+
+|
+
+::
+   
+   {
+     "accessKeyId": "<your access key>",        ←<your access key>にAccessKeyを入力
+     "secretAccessKey": "<your secret key>",    ←<your secret key>にSecretKeyを入力
+     "region": "ap-northeast-1"
+   }
+
+|
+
+証明書作成のスクリプトを実行します。certsディレクトリにはすでにプライベートキー(privatekey.pem)とCSR(cert.csr)が存在しており、CSRの内容を元に証明書を作成しています。出力されるcertificateIdの英数字文字列をメモ帳にコピーしてください。次章のAWS IoTの設定の中で証明書を特定するために利用します。
+
+::
+   
+   root@edison:~/awsiot-handson-fundamentals/certs# node create_cert.js
+   ~
+   { certificateArn: 'arn:aws:iot:ap-northeast-1:xxxxxxxxxxxxxx:cert/<英数字文字列>',
+  certificateId: '<英数字文字列>',
+  ~
+ 
+|
+
+証明書ファイル(cert.pem)がcertsディレクトリ内に存在することを確認します。
+   
+::
+
+   root@edison:~/awsiot-handson-fundamentals/certs# ls
+   cert.csr        config.json     node_modules    rootca.crt
+   cert.pem        create_cert.js  privatekey.pem
+
+   

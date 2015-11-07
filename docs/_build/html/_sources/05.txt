@@ -166,16 +166,16 @@ AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。�
 
 ::
 
-  root@edison# cd awsiot-handson-fundamentals/sensor
-  root@edison# node main.js
-  Publish: {"timestamp":"2015-10-24T14:16:37.305Z","value":268}                                                                     
-  Publish: {"timestamp":"2015-10-24T14:16:38.365Z","value":268}                                                                     
-  Publish: {"timestamp":"2015-10-24T14:16:39.424Z","value":271}                                                                     
-  Publish: {"timestamp":"2015-10-24T14:16:40.484Z","value":270}                                                                     
-  Publish: {"timestamp":"2015-10-24T14:16:41.535Z","value":272}                                                                     
-  Publish: {"timestamp":"2015-10-24T14:16:42.595Z","value":269}                                                                     
-  Publish: {"timestamp":"2015-10-24T14:16:43.654Z","value":270}    
+  root@edison:~# cd awsiot-handson-fundamentals/sensor
+  root@edison:~/awsiot-handson-fundamentals/sensor# node main.js
+  
+  Publish: {"timestamp":"2015-10-24T14:16:37.305Z","value":268}
+  Publish: {"timestamp":"2015-10-24T14:16:38.365Z","value":268}
+  Publish: {"timestamp":"2015-10-24T14:16:39.424Z","value":271}
+  Publish: {"timestamp":"2015-10-24T14:16:40.484Z","value":270}
+  Publish: {"timestamp":"2015-10-24T14:16:41.535Z","value":272}
 
+|  
 
 DynamoDBのテーブルを確認し、データが格納されていることを確認してください。テーブル一覧から"awsiot-handson-rawdata"をクリックし、テーブルのデータを表示します。
 

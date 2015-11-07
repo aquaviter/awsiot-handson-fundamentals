@@ -237,16 +237,18 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 <div class="section" id="id4">
 <h2>5.3. プログラムの実行<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>照度センサーから照度データを取得し、AWS IoTのメッセージブローカーへ送信するためのプログラムを実行します。サンプルプログラム内のawsiot-handson-fundamentals配下のsensorに移動し、プログラムを実行します。</p>
-<div class="highlight-python"><div class="highlight"><pre>root@edison# cd awsiot-handson-fundamentals/sensor
-root@edison# node main.js
+<div class="highlight-python"><div class="highlight"><pre>root@edison:~# cd awsiot-handson-fundamentals/sensor
+root@edison:~/awsiot-handson-fundamentals/sensor# node main.js
+
 Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:37.305Z&quot;,&quot;value&quot;:268}
 Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:38.365Z&quot;,&quot;value&quot;:268}
 Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:39.424Z&quot;,&quot;value&quot;:271}
 Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:40.484Z&quot;,&quot;value&quot;:270}
 Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:41.535Z&quot;,&quot;value&quot;:272}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:42.595Z&quot;,&quot;value&quot;:269}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:43.654Z&quot;,&quot;value&quot;:270}
 </pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>DynamoDBのテーブルを確認し、データが格納されていることを確認してください。テーブル一覧から&#8221;awsiot-handson-rawdata&#8221;をクリックし、テーブルのデータを表示します。</p>
 <img alt="_images/5-dynamodb-1.png" src="_images/5-dynamodb-1.png" />

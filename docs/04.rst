@@ -30,33 +30,6 @@ AWSマネージメントコンソールへログインし、画面右上のメ�
 
 |           
 
-証明書(Certificate)の作成
-=========================
-
-メニューの”Create a certificate”をクリックし、[1-Click Certificate Create]をクリックします。
-
-.. image:: images/4-create-cert.png
-
-|           
-
-Download ~をクリックして、Public Key、Private Key、Certificateをそれぞれダウンロードします。
-
-.. image:: images/4-download-cert.png
-
-|           
-
-画面下の作成した証明書をクリックし、画面右のActionsリストから[Activate]を選びます。
-
-.. image:: images/4-activate-cert.png
-
-|           
-           
-”ACTIVE”になったことを確認します 。
-
-.. image:: images/4-activated-cert.png
-
-|           
-
 ポリシーの作成
 ==============
 
@@ -82,7 +55,7 @@ Resource      * (アスタリスク)
 
 |           
 
-先ほど作成した証明書をポリシーに割当てます。リスト中の証明書をクリックし、[Actions]-[Attach a policy]をクリックしてください。
+先ほど作成した証明書をポリシーに割当てます。リスト中の証明書をクリックし、[Actions]-[Attach a policy]をクリックしてください。(3章で証明書を作成したときのcertificateIdの証明書をリソースから選択してください。）
 
 .. image:: images/4-attach-policy.png
 
