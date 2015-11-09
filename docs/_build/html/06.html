@@ -8,7 +8,7 @@
     
     <title>6. LEDのリモート制御 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -28,8 +28,8 @@
     <link rel="next" title="7. その他の設定（オプション）" href="07.html" />
     <link rel="prev" title="5. センサーデータの送信" href="05.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -41,14 +41,14 @@
         <li class="right" >
           <a href="05.html" title="5. センサーデータの送信"
              accesskey="P">前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="led">
 <h1>6. LEDのリモート制御<a class="headerlink" href="#led" title="このヘッドラインへのパーマリンク">¶</a></h1>
@@ -57,11 +57,15 @@
 <div class="section" id="id1">
 <h2>6.1. プログラムの実行<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Edison上で以下のプログラムを実行します。</p>
+<div class="highlight-python"><div class="highlight"><pre>root@edison:~# cd awsiot-handson-fundamentals/led
+root@edison:~/awsiot-handson-fundamentals/led# node main.js
+</pre></div>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>マネージメントコンソールのAWS IoTを開き、リソースの一覧から&#8221;edison&#8221;を選択します。</p>
-<p>右の詳細画面から&#8221;Update State&#8221;をクリックし、&#8221;State Detail&#8221;の画面に以下のJSONを入力してください。入力が終わったら&#8221;Update State&#8221;をクリックします。クリック後、EdisonのLEDが点灯することを確認してください。</p>
+<p>右の詳細画面から&#8221;Update Shadow&#8221;をクリックし、&#8221;State Detail&#8221;の画面に以下のJSONを入力してください。入力が終わったら&#8221;Update Shadow&#8221;をクリックします。クリック後、EdisonのLEDが点灯することを確認してください。</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
   <span class="s">&quot;reported&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s">&quot;led&quot;</span><span class="p">:</span> <span class="s">&quot;off&quot;</span>
@@ -80,6 +84,8 @@
 <div class="line"><br /></div>
 </div>
 <p>&#8220;desired&#8221;内にある&#8221;led&#8221;アイテムの値をoff/onのように記述を変更することでLEDの消灯/点灯を行なうことができます。</p>
+<p>&#8220;Failed to pdate Shadow&#8221;のエラーが発生する場合は、リソース一覧の中の&#8221;edison&#8221;にチェックが入っているか確認してください。</p>
+<img alt="_images/6-led-2.png" src="_images/6-led-2.png" />
 </div>
 </div>
 
@@ -87,7 +93,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
@@ -103,12 +109,14 @@
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="07.html"
                         title="次の章へ">7. その他の設定（オプション）</a></p>
-  <h3>このページ</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/06.txt"
-           rel="nofollow">ソースコードを表示</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/06.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>クイック検索</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -125,7 +133,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -137,12 +145,12 @@
         <li class="right" >
           <a href="05.html" title="5. センサーデータの送信"
              >前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2015, aquaviter.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
     </div>
   </body>
 </html>

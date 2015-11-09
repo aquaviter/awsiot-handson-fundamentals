@@ -21,11 +21,11 @@ AWS IoTの証明書、ポリシー、デバイスを削除するためには、�
 
 |
 
-DynamoDBのテーブル削除
-======================
+CloudFormationスタックの削除
+============================
 
-- マネージメントコンソールのサービス一覧から[DynamoDB]をクリックします。
-- リストから"awsiot-handson-rawdata"のテーブルを選択し、メニューから[Delete Table]をクリックします。
+- マネージメントコンソールのサービス一覧から[CloudFormation]をクリックします。
+- リストから"AWSIoTHandsonStack"のスタックを選択し、"Actions"から[Delete Stack]をクリックします。
 
-.. image:: images/8-delete-dynamodb-table-1.png
+.. image:: images/8-delete-cf-stack-1.png
 

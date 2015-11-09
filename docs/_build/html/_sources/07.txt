@@ -41,12 +41,28 @@ http://docs.aws.amazon.com/ja_jp/iot/latest/developerguide/cloud-watch-logs.html
 
 |
 
-以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。
+以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。(以下のコマンドをコピーするとダブルクオーテーションが文字化けする場合がありますのでご注意ください。）
 
 ::
    
-   aws iot set-logging-options --logging-options-payload roleArn=”arn:aws:iam::<your-aws-account-num>:role/IoTLoggingRole”,logLevel=”INFO”
+   aws iot set-logging-options --region ap-northeast-1 --logging-options-payload roleArn=”arn:aws:iam::<your-aws-account-num>:role/AWSIoTLogging”,logLevel=”INFO”
 
+マネージメントコンソールのサービスメニューから"CloudWatch"をクリックし、左メニューの[Logs]をクリックします。
+   
+.. image:: images/7-logs-6.png
+
+|
+
+一覧の"Log Groups"から"AWSIotLogs"が表示されていることを確認します。
+
+.. image:: images/7-logs-7.png
+
+|
+
+AWSIotLogsをクリックし、"Log Streams"にログのエントリが存在することを確認します。それぞれのLog Streamsをクリックすることで、ログを閲覧することができます。
+
+.. image:: images/7-logs-8.png
+           
 
 証明書の作成
 ============

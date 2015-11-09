@@ -8,7 +8,7 @@
     
     <title>7. その他の設定（オプション） &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -28,8 +28,8 @@
     <link rel="next" title="8. ハンズオン終了後" href="08.html" />
     <link rel="prev" title="6. LEDのリモート制御" href="06.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -41,14 +41,14 @@
         <li class="right" >
           <a href="06.html" title="6. LEDのリモート制御"
              accesskey="P">前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="id1">
 <h1>7. その他の設定（オプション）<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
@@ -82,10 +82,22 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。</p>
-<div class="highlight-python"><div class="highlight"><pre>aws iot set-logging-options --logging-options-payload roleArn=”arn:aws:iam::&lt;your-aws-account-num&gt;:role/IoTLoggingRole”,logLevel=”INFO”
+<p>以下のaws cliコマンドを実行し、aws iotに作成したロールを割当てます。(以下のコマンドをコピーするとダブルクオーテーションが文字化けする場合がありますのでご注意ください。）</p>
+<div class="highlight-python"><div class="highlight"><pre>aws iot set-logging-options --region ap-northeast-1 --logging-options-payload roleArn=”arn:aws:iam::&lt;your-aws-account-num&gt;:role/AWSIoTLogging”,logLevel=”INFO”
 </pre></div>
 </div>
+<p>マネージメントコンソールのサービスメニューから&#8221;CloudWatch&#8221;をクリックし、左メニューの[Logs]をクリックします。</p>
+<img alt="_images/7-logs-6.png" src="_images/7-logs-6.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>一覧の&#8221;Log Groups&#8221;から&#8221;AWSIotLogs&#8221;が表示されていることを確認します。</p>
+<img alt="_images/7-logs-7.png" src="_images/7-logs-7.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>AWSIotLogsをクリックし、&#8221;Log Streams&#8221;にログのエントリが存在することを確認します。それぞれのLog Streamsをクリックすることで、ログを閲覧することができます。</p>
+<img alt="_images/7-logs-8.png" src="_images/7-logs-8.png" />
 </div>
 <div class="section" id="id2">
 <h2>7.2. 証明書の作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -127,7 +139,7 @@ An optional company name []:
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
@@ -144,12 +156,14 @@ An optional company name []:
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="08.html"
                         title="次の章へ">8. ハンズオン終了後</a></p>
-  <h3>このページ</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/07.txt"
-           rel="nofollow">ソースコードを表示</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/07.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>クイック検索</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -166,7 +180,7 @@ An optional company name []:
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -178,12 +192,12 @@ An optional company name []:
         <li class="right" >
           <a href="06.html" title="6. LEDのリモート制御"
              >前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2015, aquaviter.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
     </div>
   </body>
 </html>

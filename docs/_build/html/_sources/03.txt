@@ -4,10 +4,10 @@
 
 ハンズオンを始めるにあたり、事前の準備設定を行います。
 
-ハンズオン用Cloud Formationのスタック作成
+ハンズオン用CloudFormationのスタック作成
 ========================================
 
-ハンズオンで利用するIAMユーザ、DynamoDBテーブルを作成を自動化するために、Cloud Formationのスタックを作成します。IAMユーザはedisonの証明書を作成するための権限を与えるために作成します。また、DynamoDBテーブルはシナリオ１のセンサーデータの保存用のテーブルとなります。
+ハンズオンで利用するIAMユーザ、DynamoDBテーブルを作成を自動化するために、CloudFormationのスタックを作成します。IAMユーザはedisonの証明書を作成するための権限を与えるために作成します。また、DynamoDBテーブルはシナリオ１のセンサーデータの保存用のテーブルとなります。
 
 |
 
@@ -76,7 +76,7 @@ Edison上で以下のコマンドを実行し、サンプルコードのダウ�
 
 |
 
-証明書を取得するためのスクリプトの設定を行います。解凍したサンプルコードのawsiot-handson-fundamentals/certsディレクトリに移動し、config.jsonの先ほどコピーしたCloud FormationのOutputのAccessKey/SecretKeyを入力します。
+証明書を取得するためのスクリプトの設定を行います。解凍したサンプルコードのawsiot-handson-fundamentals/certsディレクトリに移動し、config.jsonの先ほどコピーしたCloudFormationのOutputのAccessKey/SecretKeyを入力します。
 
 ::
    

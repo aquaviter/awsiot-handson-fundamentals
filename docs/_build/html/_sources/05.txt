@@ -104,7 +104,7 @@ AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。�
 ::
 
   root@edison:~# cd awsiot-handson-fundamentals/sensor
-  root@edison:~# awsiot-handson-fundamentals/sensor# node main.js
+  root@edison:~awsiot-handson-fundamentals/sensor# node main.js
   
   Publish: {"timestamp":"2015-10-24T14:16:37.305Z","value":268}
   Publish: {"timestamp":"2015-10-24T14:16:38.365Z","value":268}
