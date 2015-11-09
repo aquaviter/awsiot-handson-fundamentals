@@ -20,8 +20,9 @@ Grove Kitの中から照度センサーとLED、LCDを取出してください�
 LEDは組み立て式となります。袋からLEDを取り出してボードに装着します。ピンが長い方が+となります。
 
 .. image:: images/2-led-1.png
+              
 .. image:: images/2-led-2.png
-
+                   
 |
 
 LCDはこちらです。
@@ -32,8 +33,18 @@ LCDはこちらです。
 
 次に、Arduino互換ボードをEdisonに装着します。(Arduino互換ボードの図)
 
+.. image:: images/2-arduino-1.png
+   :height: 585px
+   :width: 758px
+   :scale: 50%
 
+           
+.. image:: images/2-arduino-2.png
+   :height: 718px
+   :width: 1061px
+   :scale: 50%           
 
+           
 |
 
 Arduino互換ボードにセンサーとLED、LCDを接続します。以下のように接続してください。
