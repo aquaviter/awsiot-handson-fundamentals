@@ -9,8 +9,57 @@ AWS IoT Device SDK解説
 
 シナリオ1ではTopic(edison/illuminance)向けに照度センサーのデータをMQTTを利用してPublishします。
 
+まず、証明書のパスを指定し、プライベート鍵、証明書、ルート証明書のパスを指定します。
+
+.. code-block:: javascript
+   :linenos:
+
+    var device = awsIot.device({
+      keyPath: '../certs/privatekey.pem',
+      certPath: '../certs/cert.pem',
+      caPath: '../certs/rootca.crt',
+      clientId: 'eison_pub_client',
+      region: 'ap-northeast-1'
+    });
 
 
+メッセージブローカに接続します。１秒ごとにループを回し、照度センサーからのデータ取得、メッセージの整形、メッセージのPublishを行います。
+
+
+.. code-block:: javascript
+   :linenos:
+
+   device.on('connect', function() {
+      console.log('Connected to Message Broker.');
+
+      setInterval(function() {
+
+        // Retrieve sensor data
+        var value = analogPin0.read();
+
+        // Display sensed analog data on LCD
+        myLCD.setColor(0, 255, 0);
+        myLCD.setCursor(0,0);
+        myLCD.write(clearStr);
+        myLCD.setCursor(0,0);
+        myLCD.write("DATA: " + value);
+
+        // Compose records
+        var record = {
+            "timestamp": moment().toISOString(),   // ISO8601 format
+            "value": value
+        };
+
+        // Serialize record to JSON format and publish a message
+        var message = JSON.stringify(record);
+        console.log("Publish: " + message);
+        device.publish(topic, message);
+
+      }, 1000);
+   });
+
+
+   
 シナリオ2の解説
 =============================
 
