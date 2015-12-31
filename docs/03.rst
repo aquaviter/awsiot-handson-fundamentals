@@ -19,7 +19,7 @@
 
 "Choose a template"から"Specify an Amazon S3 template URL"にチェックを入れ、以下のパスを入力し、[Next]をクリックします。
 
-https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiothandson.template
+https://raw.githubusercontent.com/tsuzy/awsiot-handson-fundamentals-c/published/templates/awsiothandson.template
 
 |
 
