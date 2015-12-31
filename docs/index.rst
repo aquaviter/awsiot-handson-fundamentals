@@ -61,7 +61,7 @@
 
 本ハンズオンで利用するサンプルプログラムです。Edison上で利用します。
 
-https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiot-handson-fundamentals.zip
+https://github.com/tsuzy/awsiot-handson-fundamentals-c/archive/master.zip
 
 
 よくあるトラブル
