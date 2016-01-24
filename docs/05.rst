@@ -47,6 +47,7 @@ Name                        SaveToDynamoDB
 Description                 任意
 Attribute                   *(アスタリスク)
 Topic Filter                edison/illuminance
+Condition                   入力しない
 =========================== ===========================
 
 .. image:: images/5-create-rule-3.png
@@ -61,6 +62,7 @@ Topic Filter                edison/illuminance
 =========================== ===========================
 設定項目                    値
 =========================== ===========================
+Table Name                  awsiot-handson-rawdata
 Hash Key Value              ${topic(2)}
 Range Key Value             ${timestamp()}
 Payload  Field              value

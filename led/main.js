@@ -31,8 +31,8 @@ var thingName = 'edison';
 thingShadows
 .on('connect', function() {
   console.log('connected to awsiot.');
-  thingShadows.register('edison');
-  clientTokenUpdate = thingShadows.update('edison', defaultState);
+  thingShadows.register(thingName);
+  clientTokenUpdate = thingShadows.update(thingName, defaultState);
 });
 
 // Get current status
