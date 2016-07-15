@@ -59,11 +59,12 @@ Topic Filter                edison/illuminance
 |
 
 =========================== ===========================
-設定項目                    値
+設定項目                                         値
 =========================== ===========================
-Hash Key Value              ${topic(2)}
-Range Key Value             ${timestamp()}
-Payload  Field              value
+Table Name                                    awsiot-handson-table-<任意の番号>
+Hash Key Value                              ${topic(2)}
+Range Key Value                           ${timestamp()}
+Payload  Field                                value
 =========================== ===========================
 
 |
