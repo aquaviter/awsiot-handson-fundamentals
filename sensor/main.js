@@ -8,10 +8,13 @@ var lcd    = require('jsupm_i2clcd');
 var awsIot = require('aws-iot-device-sdk');
 var moment = require('moment');
 
-var topic = 'edison/illuminance';
+if (process.argv.length < 3) {
+    console.log('usage: node main.js <topic name ex) edison/illuminance000>  ');
+} else {
+    var topic = process.argv[2];
+}
 
 // Define paramerters to publish a message
-
 var device = awsIot.device({
     keyPath: '../certs/privatekey.pem',
     certPath: '../certs/cert.pem',

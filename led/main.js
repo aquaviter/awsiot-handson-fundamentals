@@ -25,7 +25,11 @@ var clearStr = "                       ";
 // Initial state
 var defaultState = {"state":{"reported":{"led": "off"}}};
 var clientTokenUpdate;
-var thingName = 'edison';
+if (process.argv.length < 3) {
+    console.log('usage: node main.js <device name>');
+} else {
+    var thingName = process.argv[2];
+}
 
 // Connect to shadow
 thingShadows

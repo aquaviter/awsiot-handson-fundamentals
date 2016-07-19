@@ -96,18 +96,6 @@ AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。�
 .. image:: images/5-create-rule-8.png
 
 
-プログラムの修正
-================
-EdisonにダウンロードしたサンプルプログラムのTopic名に、他のユーザと被ら
-ないように任意の番号を付与します。
-viでawsiot-handson-fundamentals/sensor/main.jsを開き、11行目を修正して
-ください。
-
-::
-
-   var topic = 'edison/illuminance<任意の番号>';
-	   
-
 プログラムの実行
 ================
 
@@ -116,6 +104,7 @@ viでawsiot-handson-fundamentals/sensor/main.jsを開き、11行目を修正し�
 ::
 
   root@edison:~awsiot-handson-fundamentals/sensor# node main.js
+  edison/illuminance<任意の番号>
   
   Publish: {"timestamp":"2015-10-24T14:16:37.305Z","value":268}
   Publish: {"timestamp":"2015-10-24T14:16:38.365Z","value":268}
@@ -125,6 +114,7 @@ viでawsiot-handson-fundamentals/sensor/main.jsを開き、11行目を修正し�
 
 |  
 
-DynamoDBのテーブルを確認し、データが格納されていることを確認してください。テーブル一覧から"awsiot-handson-rawdata"をクリックし、テーブルのデータを表示します。
+DynamoDBのテーブルを確認し、データが格納されていることを確認してくださ
+い。テーブル一覧から"awsiot-handson-rawdata-<任意の番号>"をクリックし、テーブルのデータを表示します。
 
 .. image:: images/5-dynamodb-1.png           
