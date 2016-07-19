@@ -7,6 +7,21 @@ AWS CLIを実行し、Intel Edisonに接続されたLEDのON/OFFを行います�
 .. image:: images/senario2.png
 
 
+aws25行目	   
+
+プログラムの修正
+================
+EdisonにダウンロードしたサンプルプログラムのTopic名に、他のユーザと被ら
+ないように任意の番号を付与します。
+viでawsiot-handson-fundamentals/led/main.jsを開き、25行目を修正して
+ください。
+
+::
+
+   var thingName = 'edison<任意の番号>';
+
+
+
 
 プログラムの実行
 ================

@@ -18,7 +18,9 @@ AWSマネージメントコンソールへログインし、画面右上のメ�
 
 |           
 
-デバイス(Thing)を作成します。メニューの”Create a thing”をクリックします。Nameに”edison”と入力し、[Create]をクリックします。
+デバイス(Thing)を作成します。メニューの”Create a thing”をクリックし
+ます。Nameに”edison<任意の番号>”と入力し、[Create]をクリックします。
+(デバイス名を他のIAMユーザと被らないように任意の番号を付与します。）
 
 .. image:: images/4-create-thing.png
 
@@ -37,11 +39,12 @@ AWSマネージメントコンソールへログインし、画面右上のメ�
 す。メニューの”Create a policy”をクリックします。フォームにそれぞれ
 以下のパラメータを入力し、[Add Statement]をクリックします。"Statement
 1"が追加されたら、[Create]をクリックします。
+policy名は他のIAMユーザと被らないように任意の番号を付与してください。
 
 ============= ============================
 項目          値
 ============= ============================
-Name          awsiot-handson-policy
+Name          awsiot-handson-policy<任意の番号>
 Action        iot:*
 Resource      * (アスタリスク)
 ============= ============================
@@ -64,18 +67,20 @@ Resource      * (アスタリスク)
 
 |           
 
-“Confirm”の画面で、フォームにポリシー名”awsiot-handson-policy”を入力し、[Attach]をクリックします。
+“Confirm”の画面で、フォームにポリシー名”awsiot-handson-policy<任意
+の番号>”を入力し、[Attach]をクリックします。
 
 .. image:: images/4-attach-policy-2.png
 
 |           
 
-次に、デバイスと証明書の関連付けを行います。作成した証明書をリソース一覧の中から選択し、[Actions]-[Attach a thingクリックします。
+次に、デバイスと証明書の関連付けを行います。作成した証明書をリソース一
+覧の中から選択し、[Actions]-[Attach a thing] をクリックします。
 
 .. image:: images/4-attach-thing.png
 
 |           
 
-"Thing Name"にデバイス名: edisonを入力し、[Attach]をクリックします。
+"Thing Name"にデバイス名: edison<任意の番号>を入力し、[Attach]をクリックします。
 
 .. image:: images/4-attach-thing-2.png

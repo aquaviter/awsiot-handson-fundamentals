@@ -43,10 +43,10 @@ AWS IoT ルールの作成
 =========================== ===========================
 設定項目                    値
 =========================== ===========================
-Name                        SaveToDynamoDB
+Name                        SaveToDynamoDB<任意の番号>
 Description                 任意
 Attribute                   *(アスタリスク)
-Topic Filter                edison/illuminance
+Topic Filter                edison/illuminance<任意の番号>
 =========================== ===========================
 
 .. image:: images/5-create-rule-3.png
@@ -96,6 +96,17 @@ AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。�
 .. image:: images/5-create-rule-8.png
 
 
+プログラムの修正
+================
+EdisonにダウンロードしたサンプルプログラムのTopic名に、他のユーザと被ら
+ないように任意の番号を付与します。
+viでawsiot-handson-fundamentals/sensor/main.jsを開き、11行目を修正して
+ください。
+
+::
+
+   var topic = 'edison/illuminance<任意の番号>';
+	   
 
 プログラムの実行
 ================
@@ -104,7 +115,6 @@ AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。�
 
 ::
 
-  root@edison:~# cd awsiot-handson-fundamentals/sensor
   root@edison:~awsiot-handson-fundamentals/sensor# node main.js
   
   Publish: {"timestamp":"2015-10-24T14:16:37.305Z","value":268}
