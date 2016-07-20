@@ -15,8 +15,7 @@ Edison上で以下のプログラムを実行します。
 ::
    
   root@edison:~# cd awsiot-handson-fundamentals/led
-  root@edison:~/awsiot-handson-fundamentals/led# node main.js edison<
-  任意の番号>
+  root@edison:~/awsiot-handson-fundamentals/led# node main.js edison<任意の番号>
 
 |          
 
