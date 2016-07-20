@@ -22,13 +22,13 @@ AWSマネージメントコンソールへログインし、画面右上のメ�
 ます。Nameに”edison<任意の番号>”と入力し、[Create]をクリックします。
 (デバイス名を他のIAMユーザと被らないように任意の番号を付与します。）
 
-.. image:: images/4-create-thing.png
+.. image:: images/4-create-thing-1.png
 
 |           
 
 リソースの一覧で作成したデバイスが表示されます。
 
-.. image:: images/4-thing.png
+.. image:: images/4-thing-1.png
 
 |           
 
@@ -51,13 +51,19 @@ Resource      * (アスタリスク)
 
 |
 
-.. image:: images/4-create-policy.png
+.. image:: images/4-create-policy-1.png
+
+|
+
+[Create]をクリックします。
+
+.. image:: images/4-create-policy-2.png
 
 |           
 
 作成したポリシーがリソースの一覧に表示されます。
 
-.. image:: images/4-policy.png
+.. image:: images/4-policy-1.png
 
 |           
 
@@ -70,7 +76,7 @@ Resource      * (アスタリスク)
 “Confirm”の画面で、フォームにポリシー名”awsiot-handson-policy<任意
 の番号>”を入力し、[Attach]をクリックします。
 
-.. image:: images/4-attach-policy-2.png
+.. image:: images/4-attach-policy-2-1.png
 
 |           
 
@@ -83,4 +89,4 @@ Resource      * (アスタリスク)
 
 "Thing Name"にデバイス名: edison<任意の番号>を入力し、[Attach]をクリックします。
 
-.. image:: images/4-attach-thing-2.png
+.. image:: images/4-attach-thing-2-1.png

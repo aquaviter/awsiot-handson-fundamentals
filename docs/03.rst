@@ -59,11 +59,11 @@ IAMUserName                awsiot-handson-user-<任意の番号>
 
 Cloud Formationのスタックの一覧に自分が作成したスタックが表示されるのを確認します。Statusは"CREATE_IN_PROGRESS"から"CREATE_COMPLETE"になるのを確認します。
 
-.. image:: images/3-cf-6.png
+.. image:: images/3-cf-6-1.png
 
 |           
 
-.. image:: images/3-cf-7.png
+.. image:: images/3-cf-7-1.png
 
 |
 
@@ -109,7 +109,12 @@ Edison上で以下のコマンドを実行し、サンプルコードのダウ�
 
 |
 
-証明書作成のスクリプトを実行します。certsディレクトリにはすでにプライベートキー(privatekey.pem)とCSR(cert.csr)が存在しており、CSRの内容を元に証明書を作成しています。出力されるcertificateIdの英数字文字列をメモ帳にコピーしてください。次章のAWS IoTの設定の中で証明書を特定するために利用します。
+証明書作成のスクリプトを実行します。certsディレクトリにはすでにプライ
+ベートキー(privatekey.pem)とCSR(cert.csr)が存在しており、CSRの内容を元
+に証明書を作成しています。出力されるcertificateIdの英数字文字列をメモ
+帳にコピーしてください。次章のAWS IoTの設定の中で証明書を特定するため
+に利用します。 **他のIAMユーザが作成した証明書が特定できなくなってしま
+う恐れがあるため、必ずメモを取得してください**
 
 ::
    
