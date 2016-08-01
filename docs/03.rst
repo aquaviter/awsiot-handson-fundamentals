@@ -34,9 +34,9 @@ https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiothandson.template
 =================== ===============================
 項目                                設定
 =================== ===============================
-Stack Name                    awsiot-handson-stack-<任意の番号>
-DynamoDBTableName   awsiot-handson-table-<任意の番号>
-IAMUserName                awsiot-handson-user-<任意の番号>
+Stack Name                    awsiot-handson-stack<任意の番号>
+DynamoDBTableName   awsiot-handson-table<任意の番号>
+IAMUserName                awsiot-handson-user<任意の番号>
 =================== ===============================
 
 
@@ -86,7 +86,7 @@ Edison上で以下のコマンドを実行し、サンプルコードのダウ�
    
    root@edison:~# wget https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiot-handson-fundamentals.zip
 
-   root@edison:~# unzip awsiot-handson-fundamentals.zip
+   root@edison:~# unzip -q awsiot-handson-fundamentals.zip
 
 |
 
