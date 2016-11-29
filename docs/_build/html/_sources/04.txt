@@ -6,73 +6,86 @@ AWS IoT基本設定
 ==============
 
 AWSマネージメントコンソールへログインし、画面右上のメニューから東京リージョンを選択します。
-サービス一覧から"AWS IoT"をクリックします。
+AWSサービスから"IoT"と入力し、"AWS IoT"を選択します。
 
 .. image:: images/4-servicemenu.png
 
 |           
                    
-“Get Startedが表示される場合はそちらをクリックします。
+dashboard画面が表示される場合は左側のメニューのRegistry内のThingsをクリックします。
 
 .. image:: images/4-getstart.png
 
 |           
 
-デバイス(Thing)を作成します。メニューの”Create a thing”をクリックします。Nameに”edison”と入力し、[Create]をクリックします。
+デバイス(Thing)を作成します。[Create]をクリックします。
 
-.. image:: images/4-create-thing.png
+.. image:: images/4-create-thing-1.png
+
+Nameに”edison<任意の番号>”と入力し、[Create thing]をクリックします。
+(デバイス名を他のIAMユーザと被らないように任意の番号を付与します。）
+
+.. image:: images/4-create-thing-2.png
 
 |           
 
-リソースの一覧で作成したデバイスが表示されます。
+リソースの一覧で作成したデバイスが表示されます。[←]でThings画面に戻ります。
 
-.. image:: images/4-thing.png
+.. image:: images/4-thing-1.png
 
 |           
 
 ポリシーの作成
 ==============
 
-デバイスに対して、AWS IoTの各種操作を許可するためのポリシーを作成します。メニューの”Create a policy”をクリックします。フォームにそれぞれ以下のパラメータを入力し、[Create]をクリックします。
+デバイスに対して、AWS IoTの各種操作を許可するためのポリシーを作成しま
+す。メニューのSecurity内のPoliciesを選択し[Create]をクリックします。
+
+.. image:: images/4-create-policy-1.png
+
+|
+
+フォームにそれぞれ以下のパラメータを入力し、[Create]をクリックします。
+policy名は他のIAMユーザと被らないように任意の番号を付与してください。
 
 ============= ============================
 項目          値
 ============= ============================
-Name          awsiot-handson-policy
+Name          awsiot-handson-policy<任意の番号>
 Action        iot:*
 Resource      * (アスタリスク)
 ============= ============================
 
 |
 
-.. image:: images/4-create-policy.png
+.. image:: images/4-create-policy-2.png
+
+|
+
+作成したポリシーが表示されます。[←]でPolicies画面に戻ります。
+
+.. image:: images/4-policy-1.png
 
 |           
 
-作成したポリシーがリソースの一覧に表示されます。
-
-.. image:: images/4-policy.png
-
-|           
-
-先ほど作成した証明書をポリシーに割当てます。リスト中の証明書をクリックし、[Actions]-[Attach a policy]をクリックしてください。(3章で証明書を作成したときのcertificateIdの証明書をリソースから選択してください。）
+先ほど作成した証明書をポリシーに割当てます。メニューのSecurity内のCertificatesをクリックしてしてリスト中の証明書の右下のチェックボックスをチェックし、[Actions]-[Attach policy]をクリックしてください。(3章で証明書を作成したときのcertificateIdの証明書をリソースから選択してください。）
 
 .. image:: images/4-attach-policy.png
 
 |           
 
-“Confirm”の画面で、フォームにポリシー名”awsiot-handson-policy”を入力し、[Attach]をクリックします。
+“Attach policies to certificate(s)”の画面で、先ほど作成したポリシーを選択し、[Attach]をクリックします。
 
-.. image:: images/4-attach-policy-2.png
+.. image:: images/4-attach-policy-2-1.png
 
 |           
 
-次に、デバイスと証明書の関連付けを行います。作成した証明書をリソース一覧の中から選択し、[Actions]-[Attach a thingクリックします。
+次に、デバイスと証明書の関連付けを行います。[Actions]-[Attach thing] をクリックします。
 
 .. image:: images/4-attach-thing.png
 
 |           
 
-"Thing Name"にデバイス名: edisonを入力し、[Attach]をクリックします。
+"Attach things to certificate(s)"画面でデバイスを選択し、[Attach]をクリックします。
 
-.. image:: images/4-attach-thing-2.png
+.. image:: images/4-attach-thing-2-1.png
