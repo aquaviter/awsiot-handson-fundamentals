@@ -49,7 +49,7 @@ Topic Filter                edison/illuminance<任意の番号>
 
 |
 
-[Add action]をクリックし、"Select an action"から"Insert a message into a Database table"を選択し、[Configure action]をクリックします。
+[Add action]をクリックし、"Select an action"から"Insert a message into a DynamoDB table"を選択し、[Configure action]をクリックします。
 
 
 .. image:: images/5-create-rule-4-1.png
