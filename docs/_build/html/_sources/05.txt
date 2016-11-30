@@ -23,77 +23,77 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 AWS IoT ルールの作成
 ====================
 
-"Resources"の[Create a resource]をクリックします。
+メニューのRulesをクリックし[Create]をクリックします。
 
 .. image:: images/5-create-rule-1.png
 
 |           
 
-
-[Create a rule]をクリックします。
-
-.. image:: images/5-create-rule-2.png
-
-|           
-
 スクリーンショットの赤枠で囲んだ部分について、以下の項目を入力します。
+任意の番号の部分は他のユーザと被らない数字を入力してください。
 
-|
-
-=========================== ===========================
-設定項目                    値
-=========================== ===========================
-Name                        SaveToDynamoDB
+=========================== ==============================
+設定項目                      値
+=========================== ==============================
+Name                        SaveToDynamoDB<任意の番号>
+SQL Version                 2016-03-23
 Description                 任意
 Attribute                   *(アスタリスク)
-Topic Filter                edison/illuminance
-=========================== ===========================
-
-.. image:: images/5-create-rule-3.png
+Topic Filter                edison/illuminance<任意の番号>
+=========================== ==============================
 
 |
 
-画面をスクロールし、"Choose an action"から"Insert a message into a Database table(DynamoDB)"を選択します。以下の値を入力します。"Role Name"では[Create a new policy]をクリックします。
-
-
-|
-
-=========================== ===========================
-設定項目                    値
-=========================== ===========================
-Hash Key Value              ${topic(2)}
-Range Key Value             ${timestamp()}
-Payload  Field              value
-=========================== ===========================
+.. image:: images/5-create-rule-3-1.png
+.. image:: images/5-create-rule-3-2.png
 
 |
 
-.. image:: images/5-create-rule-4.png
+[Add action]をクリックし、"Select an action"から"Insert a message into a Database table"を選択し、[Configure action]をクリックします。
+
+
+.. image:: images/5-create-rule-4-1.png
 
 |
 
-AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。以下の画面で[Allow]をクリックします。
+.. image:: images/5-create-rule-4-2.png
+
+
+以下の値を入力します。
+
+=================================== ===========================
+設定項目                                         値
+=================================== ===========================
+Table Name                          awsiot-handson-table<任意の番号>
+Hash Key Value                      ${topic(2)}
+Range Key Value                     ${timestamp()}
+Write message data to this column   value
+=================================== ===========================
+
+|
+
+.. image:: images/5-create-rule-4-3.png
+
+|
+
+AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。
+"Choose or create a role to grant AWS IoT access to the DynamoDB resource to perform this action."で[Create a new role]をクリックし、ロール名として"AWSIoTHandsonDynamoDB"と入力し、再度[Create a new role]をクリックします。
+これによって入力したロール名が選択できるようになるので、作成したロールを選択し、[Upate role]をクリックし、次に[Add action]をクリックします。
 
 .. image:: images/5-create-rule-5.png
 
 |
 
-[Add Action]をクリックします。
 
-.. image:: images/5-create-rule-6.png
+"DynamoDB Action"が追加されたことを確認したら、[Create rule]をクリックします。
 
-|
-
-"DynamoDB Action"が追加されたことを確認したら、[Create]をクリックします。
-
-.. image:: images/5-create-rule-7.png
+.. image:: images/5-create-rule-6-1.png
 
 |
 
-一覧に作成したルールが作成されたことを確認します。
+ルールが作成されたことを確認します。
 
-.. image:: images/5-create-rule-8.png
-
+.. image:: images/5-create-rule-7-1.png
 
 
 プログラムの実行
@@ -103,8 +103,7 @@ AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。�
 
 ::
 
-  root@edison:~# cd awsiot-handson-fundamentals/sensor
-  root@edison:~awsiot-handson-fundamentals/sensor# node main.js
+  root@edison:~awsiot-handson-fundamentals/sensor# node main.js  edison/illuminance<任意の番号>
   
   Publish: {"timestamp":"2015-10-24T14:16:37.305Z","value":268}
   Publish: {"timestamp":"2015-10-24T14:16:38.365Z","value":268}
@@ -114,6 +113,10 @@ AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。�
 
 |  
 
-DynamoDBのテーブルを確認し、データが格納されていることを確認してください。テーブル一覧から"awsiot-handson-rawdata"をクリックし、テーブルのデータを表示します。
+DynamoDBのテーブルを確認し、データが格納されていることを確認してくださ
+い。マネージメントコンソールのトップ画面に戻り、DynamoDBを選択します。
+画面左のメニューの"Tables"をクリックし、テーブル一覧から
+"awsiot-handson-table<任意の番号>"をクリックします。メイン画面上部の
+"Item"タブをクリックし、テーブルのデータを表示します。
 
-.. image:: images/5-dynamodb-1.png           
+.. image:: images/5-dynamodb-1-1.png           

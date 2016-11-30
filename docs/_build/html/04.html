@@ -2,13 +2,13 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4. AWS IoT基本設定 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>4. AWS IoT基本設定 &#8212; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,12 +24,14 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
     <link rel="next" title="5. センサーデータの送信" href="05.html" />
     <link rel="prev" title="3. ハンズオン準備" href="03.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -41,48 +43,58 @@
         <li class="right" >
           <a href="03.html" title="3. ハンズオン準備"
              accesskey="P">前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="aws-iot">
 <h1>4. AWS IoT基本設定<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>4.1. デバイスの作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>AWSマネージメントコンソールへログインし、画面右上のメニューから東京リージョンを選択します。
-サービス一覧から&#8221;AWS IoT&#8221;をクリックします。</p>
+AWSサービスから&#8221;IoT&#8221;と入力し、&#8221;AWS IoT&#8221;を選択します。</p>
 <img alt="_images/4-servicemenu.png" src="_images/4-servicemenu.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>“Get Startedが表示される場合はそちらをクリックします。</p>
+<p>dashboard画面が表示される場合は左側のメニューのRegistry内のThingsをクリックします。</p>
 <img alt="_images/4-getstart.png" src="_images/4-getstart.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>デバイス(Thing)を作成します。メニューの”Create a thing”をクリックします。Nameに”edison”と入力し、[Create]をクリックします。</p>
-<img alt="_images/4-create-thing.png" src="_images/4-create-thing.png" />
+<p>デバイス(Thing)を作成します。[Create]をクリックします。</p>
+<img alt="_images/4-create-thing-1.png" src="_images/4-create-thing-1.png" />
+<p>Nameに”edison&lt;任意の番号&gt;”と入力し、[Create thing]をクリックします。
+(デバイス名を他のIAMユーザと被らないように任意の番号を付与します。）</p>
+<img alt="_images/4-create-thing-2.png" src="_images/4-create-thing-2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>リソースの一覧で作成したデバイスが表示されます。</p>
-<img alt="_images/4-thing.png" src="_images/4-thing.png" />
+<p>リソースの一覧で作成したデバイスが表示されます。[←]でThings画面に戻ります。</p>
+<img alt="_images/4-thing-1.png" src="_images/4-thing-1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="id2">
 <h2>4.2. ポリシーの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>デバイスに対して、AWS IoTの各種操作を許可するためのポリシーを作成します。メニューの”Create a policy”をクリックします。フォームにそれぞれ以下のパラメータを入力し、[Create]をクリックします。</p>
+<p>デバイスに対して、AWS IoTの各種操作を許可するためのポリシーを作成しま
+す。メニューのSecurity内のPoliciesを選択し[Create]をクリックします。</p>
+<img alt="_images/4-create-policy-1.png" src="_images/4-create-policy-1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>フォームにそれぞれ以下のパラメータを入力し、[Create]をクリックします。
+policy名は他のIAMユーザと被らないように任意の番号を付与してください。</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col width="28%" />
+<col width="72%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">項目</th>
@@ -91,7 +103,7 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Name</td>
-<td>awsiot-handson-policy</td>
+<td>awsiot-handson-policy&lt;任意の番号&gt;</td>
 </tr>
 <tr class="row-odd"><td>Action</td>
 <td>iot:*</td>
@@ -107,32 +119,32 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="_images/4-create-policy.png" src="_images/4-create-policy.png" />
+<img alt="_images/4-create-policy-2.png" src="_images/4-create-policy-2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>作成したポリシーがリソースの一覧に表示されます。</p>
-<img alt="_images/4-policy.png" src="_images/4-policy.png" />
+<p>作成したポリシーが表示されます。[←]でPolicies画面に戻ります。</p>
+<img alt="_images/4-policy-1.png" src="_images/4-policy-1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>先ほど作成した証明書をポリシーに割当てます。リスト中の証明書をクリックし、[Actions]-[Attach a policy]をクリックしてください。(3章で証明書を作成したときのcertificateIdの証明書をリソースから選択してください。）</p>
+<p>先ほど作成した証明書をポリシーに割当てます。メニューのSecurity内のCertificatesをクリックしてしてリスト中の証明書の右下のチェックボックスをチェックし、[Actions]-[Attach policy]をクリックしてください。(3章で証明書を作成したときのcertificateIdの証明書をリソースから選択してください。）</p>
 <img alt="_images/4-attach-policy.png" src="_images/4-attach-policy.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>“Confirm”の画面で、フォームにポリシー名”awsiot-handson-policy”を入力し、[Attach]をクリックします。</p>
-<img alt="_images/4-attach-policy-2.png" src="_images/4-attach-policy-2.png" />
+<p>“Attach policies to certificate(s)”の画面で、先ほど作成したポリシーを選択し、[Attach]をクリックします。</p>
+<img alt="_images/4-attach-policy-2-1.png" src="_images/4-attach-policy-2-1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>次に、デバイスと証明書の関連付けを行います。作成した証明書をリソース一覧の中から選択し、[Actions]-[Attach a thingクリックします。</p>
+<p>次に、デバイスと証明書の関連付けを行います。[Actions]-[Attach thing] をクリックします。</p>
 <img alt="_images/4-attach-thing.png" src="_images/4-attach-thing.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>&#8220;Thing Name&#8221;にデバイス名: edisonを入力し、[Attach]をクリックします。</p>
-<img alt="_images/4-attach-thing-2.png" src="_images/4-attach-thing-2.png" />
+<p>&#8220;Attach things to certificate(s)&#8221;画面でデバイスを選択し、[Attach]をクリックします。</p>
+<img alt="_images/4-attach-thing-2-1.png" src="_images/4-attach-thing-2-1.png" />
 </div>
 </div>
 
@@ -140,7 +152,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
@@ -157,29 +169,28 @@
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="05.html"
                         title="次の章へ">5. センサーデータの送信</a></p>
-  <h3>このページ</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/04.txt"
-           rel="nofollow">ソースコードを表示</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/04.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>クイック検索</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="検索" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="検索" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    モジュール、クラス、または関数名を入力してください
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -191,12 +202,12 @@
         <li class="right" >
           <a href="03.html" title="3. ハンズオン準備"
              >前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2015, aquaviter.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, aquaviter.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.9 で生成しました。
     </div>
   </body>
 </html>

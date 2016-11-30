@@ -2,13 +2,13 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5. センサーデータの送信 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>5. センサーデータの送信 &#8212; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,12 +24,14 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
     <link rel="next" title="6. LEDのリモート制御" href="06.html" />
     <link rel="prev" title="4. AWS IoT基本設定" href="04.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -41,14 +43,14 @@
         <li class="right" >
           <a href="04.html" title="4. AWS IoT基本設定"
              accesskey="P">前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="id1">
 <h1>5. センサーデータの送信<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
@@ -59,7 +61,7 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 <div class="line"><br /></div>
 </div>
 <p>センサーデータは以下のJSONフォーマットとします。</p>
-<div class="highlight-python"><div class="highlight"><pre>{
+<div class="highlight-default"><div class="highlight"><pre><span></span>{
   &quot;timestamp&quot;: &quot;2015-10-24T14:16:37.305Z&quot;, ←ISO8601形式
   &quot;value&quot;: &quot;300&quot;                           ←アナログ値
 }
@@ -70,24 +72,17 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 </div>
 <div class="section" id="aws-iot">
 <h2>5.1. AWS IoT ルールの作成<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>&#8220;Resources&#8221;の[Create a resource]をクリックします。</p>
+<p>メニューのRulesをクリックし[Create]をクリックします。</p>
 <img alt="_images/5-create-rule-1.png" src="_images/5-create-rule-1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>[Create a rule]をクリックします。</p>
-<img alt="_images/5-create-rule-2.png" src="_images/5-create-rule-2.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>スクリーンショットの赤枠で囲んだ部分について、以下の項目を入力します。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
+<p>スクリーンショットの赤枠で囲んだ部分について、以下の項目を入力します。
+任意の番号の部分は他のユーザと被らない数字を入力してください。</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col width="47%" />
+<col width="53%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">設定項目</th>
@@ -96,31 +91,41 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Name</td>
-<td>SaveToDynamoDB</td>
+<td>SaveToDynamoDB&lt;任意の番号&gt;</td>
 </tr>
-<tr class="row-odd"><td>Description</td>
+<tr class="row-odd"><td>SQL Version</td>
+<td>2016-03-23</td>
+</tr>
+<tr class="row-even"><td>Description</td>
 <td>任意</td>
 </tr>
-<tr class="row-even"><td>Attribute</td>
+<tr class="row-odd"><td>Attribute</td>
 <td><a href="#id2"><span class="problematic" id="id3">*</span></a>(アスタリスク)</td>
 </tr>
-<tr class="row-odd"><td>Topic Filter</td>
-<td>edison/illuminance</td>
+<tr class="row-even"><td>Topic Filter</td>
+<td>edison/illuminance&lt;任意の番号&gt;</td>
 </tr>
 </tbody>
 </table>
-<img alt="_images/5-create-rule-3.png" src="_images/5-create-rule-3.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>画面をスクロールし、&#8221;Choose an action&#8221;から&#8221;Insert a message into a Database table(DynamoDB)&#8221;を選択します。以下の値を入力します。&#8221;Role Name&#8221;では[Create a new policy]をクリックします。</p>
+<img alt="_images/5-create-rule-3-1.png" src="_images/5-create-rule-3-1.png" />
+<img alt="_images/5-create-rule-3-2.png" src="_images/5-create-rule-3-2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p>[Add action]をクリックし、&#8221;Select an action&#8221;から&#8221;Insert a message into a Database table&#8221;を選択し、[Configure action]をクリックします。</p>
+<img alt="_images/5-create-rule-4-1.png" src="_images/5-create-rule-4-1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/5-create-rule-4-2.png" src="_images/5-create-rule-4-2.png" />
+<p>以下の値を入力します。</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col width="52%" />
+<col width="48%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">設定項目</th>
@@ -128,13 +133,16 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>Hash Key Value</td>
+<tr class="row-even"><td>Table Name</td>
+<td>awsiot-handson-table&lt;任意の番号&gt;</td>
+</tr>
+<tr class="row-odd"><td>Hash Key Value</td>
 <td>${topic(2)}</td>
 </tr>
-<tr class="row-odd"><td>Range Key Value</td>
+<tr class="row-even"><td>Range Key Value</td>
 <td>${timestamp()}</td>
 </tr>
-<tr class="row-even"><td>Payload  Field</td>
+<tr class="row-odd"><td>Write message data to this column</td>
 <td>value</td>
 </tr>
 </tbody>
@@ -142,46 +150,46 @@ EdisonはAWS IoTのトピックにデータをパブリッシュし、AWS IoTで
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="_images/5-create-rule-4.png" src="_images/5-create-rule-4.png" />
+<img alt="_images/5-create-rule-4-3.png" src="_images/5-create-rule-4-3.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。以下の画面で[Allow]をクリックします。</p>
+<p>AWS IoTからDynamoDBへデータをPutするためのRoleを作成します。
+&#8220;Choose or create a role to grant AWS IoT access to the DynamoDB resource to perform this action.&#8221;で[Create a new role]をクリックし、ロール名として&#8221;AWSIoTHandsonDynamoDB&#8221;と入力し、再度[Create a new role]をクリックします。
+これによって入力したロール名が選択できるようになるので、作成したロールを選択し、[Upate role]をクリックし、次に[Add action]をクリックします。</p>
 <img alt="_images/5-create-rule-5.png" src="_images/5-create-rule-5.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>[Add Action]をクリックします。</p>
-<img alt="_images/5-create-rule-6.png" src="_images/5-create-rule-6.png" />
+<p>&#8220;DynamoDB Action&#8221;が追加されたことを確認したら、[Create rule]をクリックします。</p>
+<img alt="_images/5-create-rule-6-1.png" src="_images/5-create-rule-6-1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>&#8220;DynamoDB Action&#8221;が追加されたことを確認したら、[Create]をクリックします。</p>
-<img alt="_images/5-create-rule-7.png" src="_images/5-create-rule-7.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>一覧に作成したルールが作成されたことを確認します。</p>
-<img alt="_images/5-create-rule-8.png" src="_images/5-create-rule-8.png" />
+<p>ルールが作成されたことを確認します。</p>
+<img alt="_images/5-create-rule-7-1.png" src="_images/5-create-rule-7-1.png" />
 </div>
 <div class="section" id="id4">
 <h2>5.2. プログラムの実行<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>照度センサーから照度データを取得し、AWS IoTのメッセージブローカーへ送信するためのプログラムを実行します。サンプルプログラム内のawsiot-handson-fundamentals配下のsensorに移動し、プログラムを実行します。</p>
-<div class="highlight-python"><div class="highlight"><pre>root@edison:~# cd awsiot-handson-fundamentals/sensor
-root@edison:~awsiot-handson-fundamentals/sensor# node main.js
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@edison</span><span class="p">:</span><span class="o">~</span><span class="n">awsiot</span><span class="o">-</span><span class="n">handson</span><span class="o">-</span><span class="n">fundamentals</span><span class="o">/</span><span class="n">sensor</span><span class="c1"># node main.js  edison/illuminance&lt;任意の番号&gt;</span>
 
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:37.305Z&quot;,&quot;value&quot;:268}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:38.365Z&quot;,&quot;value&quot;:268}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:39.424Z&quot;,&quot;value&quot;:271}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:40.484Z&quot;,&quot;value&quot;:270}
-Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:41.535Z&quot;,&quot;value&quot;:272}
+<span class="n">Publish</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;timestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2015-10-24T14:16:37.305Z&quot;</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="mi">268</span><span class="p">}</span>
+<span class="n">Publish</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;timestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2015-10-24T14:16:38.365Z&quot;</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="mi">268</span><span class="p">}</span>
+<span class="n">Publish</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;timestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2015-10-24T14:16:39.424Z&quot;</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="mi">271</span><span class="p">}</span>
+<span class="n">Publish</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;timestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2015-10-24T14:16:40.484Z&quot;</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="mi">270</span><span class="p">}</span>
+<span class="n">Publish</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;timestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2015-10-24T14:16:41.535Z&quot;</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="mi">272</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>DynamoDBのテーブルを確認し、データが格納されていることを確認してください。テーブル一覧から&#8221;awsiot-handson-rawdata&#8221;をクリックし、テーブルのデータを表示します。</p>
-<img alt="_images/5-dynamodb-1.png" src="_images/5-dynamodb-1.png" />
+<p>DynamoDBのテーブルを確認し、データが格納されていることを確認してくださ
+い。マネージメントコンソールのトップ画面に戻り、DynamoDBを選択します。
+画面左のメニューの&#8221;Tables&#8221;をクリックし、テーブル一覧から
+&#8220;awsiot-handson-table&lt;任意の番号&gt;&#8221;をクリックします。メイン画面上部の
+&#8220;Item&#8221;タブをクリックし、テーブルのデータを表示します。</p>
+<img alt="_images/5-dynamodb-1-1.png" src="_images/5-dynamodb-1-1.png" />
 </div>
 </div>
 
@@ -189,7 +197,7 @@ Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:41.535Z&quot;,&quot;value
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
@@ -206,29 +214,28 @@ Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:41.535Z&quot;,&quot;value
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="06.html"
                         title="次の章へ">6. LEDのリモート制御</a></p>
-  <h3>このページ</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/05.txt"
-           rel="nofollow">ソースコードを表示</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/05.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>クイック検索</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="検索" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="検索" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    モジュール、クラス、または関数名を入力してください
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -240,12 +247,12 @@ Publish: {&quot;timestamp&quot;:&quot;2015-10-24T14:16:41.535Z&quot;,&quot;value
         <li class="right" >
           <a href="04.html" title="4. AWS IoT基本設定"
              >前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2015, aquaviter.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, aquaviter.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.9 で生成しました。
     </div>
   </body>
 </html>

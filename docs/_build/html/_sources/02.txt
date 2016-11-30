@@ -108,7 +108,7 @@ MacOSをご利用の場合は、ターミナルから以下のコマンドを入
 ::
    
    $ sudo cu -s 115200 -l /dev/tty.usbserial-XXXXXXX
-   Password: ←MacOSのrootパスワードを入力
+   Password: ← Macのユーザパスワードを入力
 
 プロンプトが表示されれば接続成功です。loginのプロンプトで、ユーザ名”root”、パスワード”Password1”でログインしてください。
 

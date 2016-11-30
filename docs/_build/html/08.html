@@ -2,13 +2,13 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>8. ハンズオン終了後 &mdash; awsiot-handson-fundamentals 0.0 ドキュメント</title>
+    <title>8. ハンズオン終了後 &#8212; awsiot-handson-fundamentals 0.0 ドキュメント</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,12 +24,14 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
     <link rel="top" title="awsiot-handson-fundamentals 0.0 ドキュメント" href="index.html" />
     <link rel="next" title="9. AWS IoT Device SDK解説" href="09.html" />
     <link rel="prev" title="7. その他の設定（オプション）" href="07.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -41,14 +43,14 @@
         <li class="right" >
           <a href="07.html" title="7. その他の設定（オプション）"
              accesskey="P">前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="id1">
 <h1>8. ハンズオン終了後<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
@@ -57,16 +59,17 @@
 <h2>8.1. AWS IoTのリソース削除<a class="headerlink" href="#aws-iot" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>AWS IoTの証明書、ポリシー、デバイスを削除するためには、削除前にアタッチされているリソースをデタッチする必要があります。（ルールは他のリソースとの関連性はありません）</p>
 <ul class="simple">
-<li>マネージメントコンソールのサービス一覧から[AWS IoT]をクリックします。</li>
-<li>リソース一覧から削除したい証明書を選択します。</li>
-<li>右の詳細画面より、関連付けられているデバイスおよびポリシーを選択し、[Detach]をクリックします。</li>
+<li>マネージメントコンソールのサービスから[AWS IoT]を選択します。</li>
+<li>削除したい証明書を選択します。</li>
+<li>関連付けられているデバイスを選択し、[Detach]をクリックします。</li>
+<li>同様にポリシーもデタッチします。</li>
 </ul>
 <img alt="_images/8-detach-1.png" src="_images/8-detach-1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>リソース一覧から削除したいリソースを選択し、&#8221;Actions&#8221;のメニューから[Revoke]をクリックします。</li>
+<li>削除したいリソースを選択し、&#8221;Actions&#8221;のメニューから&#8221;Delete”を選択します。</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -86,7 +89,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">目次</a></h3>
   <ul>
@@ -103,29 +106,28 @@
   <h4>次のトピックへ</h4>
   <p class="topless"><a href="09.html"
                         title="次の章へ">9. AWS IoT Device SDK解説</a></p>
-  <h3>このページ</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/08.txt"
-           rel="nofollow">ソースコードを表示</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/08.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>クイック検索</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="検索" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="検索" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    モジュール、クラス、または関数名を入力してください
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -137,12 +139,12 @@
         <li class="right" >
           <a href="07.html" title="7. その他の設定（オプション）"
              >前へ</a> |</li>
-        <li><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">awsiot-handson-fundamentals 0.0 ドキュメント</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2015, aquaviter.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 で生成しました。
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, aquaviter.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.9 で生成しました。
     </div>
   </body>
 </html>

@@ -12,7 +12,7 @@
 
 |
 
-マネージメントコンソールのサービス一覧から"Cloud Formation"をクリックします。
+マネージメントコンソールのAWSサービスで"CloudFormation"と入力しCloudFormationを選択します。
 
 .. image:: images/3-cf-1.png
 

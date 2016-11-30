@@ -2,7 +2,8 @@
  ハンズオン準備
 ================
 
-ハンズオンを始めるにあたり、事前の準備設定を行います。
+ハンズオンを始めるにあたり、事前の準備設定を行います。AWSマネージメン
+トコンソールにログインし、**東京リージョン** を選択してください。
 
 ハンズオン用CloudFormationのスタック作成
 ========================================
@@ -11,7 +12,7 @@
 
 |
 
-マネージメントコンソールのサービス一覧から"Cloud Formation"をクリックします。
+マネージメントコンソールのAWSサービスで"CloudFormation"と入力しCloudFormationを選択します。
 
 .. image:: images/3-cf-1.png
 
@@ -25,9 +26,22 @@ https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiothandson.template
 
 .. image:: images/3-cf-2.png
 
-"Stack Name"に"AWSIoTHandsonStack"と入力し、[Next]をクリックします。
+"Stack Name"と"DynamoDBTableName"、"IAMUserName"に以下の値を入力し、
+[Next]をクリックします。
+(一つのAWSアカウントの複数のIAMユーザがいる場合、<任意の番号>は他のユー
+ザと被らないように設定してください)
 
-.. image:: images/3-cf-3.png
+=================== ===============================
+項目                                設定
+=================== ===============================
+Stack Name                    awsiot-handson-stack<任意の番号>
+DynamoDBTableName   awsiot-handson-table<任意の番号>
+IAMUserName                awsiot-handson-user<任意の番号>
+=================== ===============================
+
+
+
+.. image:: images/3-cf-3-1.png
 
 |
 
@@ -43,13 +57,13 @@ https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiothandson.template
 
 |
 
-Cloud Formationのスタックの一覧に作成したスタックが表示されるのを確認します。Statusは"CREATE_IN_PROGRESS"から"CREATE_COMPLETE"になるのを確認します。
+Cloud Formationのスタックの一覧に自分が作成したスタックが表示されるのを確認します。Statusは"CREATE_IN_PROGRESS"から"CREATE_COMPLETE"になるのを確認します。
 
-.. image:: images/3-cf-6.png
+.. image:: images/3-cf-6-1.png
 
 |           
 
-.. image:: images/3-cf-7.png
+.. image:: images/3-cf-7-1.png
 
 |
 
@@ -72,7 +86,7 @@ Edison上で以下のコマンドを実行し、サンプルコードのダウ�
    
    root@edison:~# wget https://s3-ap-northeast-1.amazonaws.com/awsiot-handson-jp/awsiot-handson-fundamentals.zip
 
-   root@edison:~# unzip awsiot-handson-fundamentals.zip
+   root@edison:~# unzip -q awsiot-handson-fundamentals.zip
 
 |
 
@@ -95,7 +109,12 @@ Edison上で以下のコマンドを実行し、サンプルコードのダウ�
 
 |
 
-証明書作成のスクリプトを実行します。certsディレクトリにはすでにプライベートキー(privatekey.pem)とCSR(cert.csr)が存在しており、CSRの内容を元に証明書を作成しています。出力されるcertificateIdの英数字文字列をメモ帳にコピーしてください。次章のAWS IoTの設定の中で証明書を特定するために利用します。
+証明書作成のスクリプトを実行します。certsディレクトリにはすでにプライ
+ベートキー(privatekey.pem)とCSR(cert.csr)が存在しており、CSRの内容を元
+に証明書を作成しています。出力されるcertificateIdの英数字文字列をメモ
+帳にコピーしてください。次章のAWS IoTの設定の中で証明書を特定するため
+に利用します。 **他のIAMユーザが作成した証明書が特定できなくなってしま
+う恐れがあるため、必ずメモを取得してください**
 
 ::
    
@@ -115,4 +134,4 @@ Edison上で以下のコマンドを実行し、サンプルコードのダウ�
    cert.csr        config.json     node_modules    rootca.crt
    cert.pem        create_cert.js  privatekey.pem
 
-   
+
