@@ -71,24 +71,16 @@ I2C             LCD
 
 Edisonへ接続します。まず、Edisonにシリアルポート経由で接続します。USBケーブルでPCとEdisonを接続し、シリアルコンソールを開きます。
 
-**Windowsの場合**
-
 USBケーブルとACアダプタを図のように接続してください。
 
 .. image:: images/usb-win.png
-
-**MacOSの場合**
-
-USBケーブル2本を図のように接続してください。
-
-.. image:: images/usb-mac.png
 
 ターミナルソフトでEdisonに接続してください。接続に必要な情報はこちらです。**特にBaud Rateにご注意ください!**
 
 ========== =========================================================================
 設定       設定項目
 ========== =========================================================================
-Port       Edisonが接続されているUSBポート(Macであれば/dev/cu.usbserial-xxxx[FTDI])
+Port       Edisonが接続されているUSBポート (Windowsはデバイスマネージャで、Macであれば"ls /dev/tty.usbserial-*"で確認)
 Baud Rate  115200
 Data Bits  8
 Stop Bits  1
